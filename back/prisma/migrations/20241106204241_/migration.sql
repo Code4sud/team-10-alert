@@ -54,9 +54,9 @@ CREATE TABLE "response" (
     "healthPointsImpact" INTEGER NOT NULL,
     "wisePointsImpact" INTEGER NOT NULL,
     "scenarioNodeParentId" TEXT NOT NULL,
-    "scenarioNodeChildId" TEXT NOT NULL,
+    "scenarioNodeChildId" TEXT,
     CONSTRAINT "response_scenarioNodeParentId_fkey" FOREIGN KEY ("scenarioNodeParentId") REFERENCES "scenarioNode" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "response_scenarioNodeChildId_fkey" FOREIGN KEY ("scenarioNodeChildId") REFERENCES "scenarioNode" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT "response_scenarioNodeChildId_fkey" FOREIGN KEY ("scenarioNodeChildId") REFERENCES "scenarioNode" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateIndex

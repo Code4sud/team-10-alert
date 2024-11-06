@@ -74,6 +74,6 @@ model response {
   scenarioNodeParent   scenarioNode @relation(fields: [scenarioNodeParentId], references: [id], name: "Parent")
   scenarioNodeParentId String
 
-  scenarioNodeChild   scenarioNode @relation(fields: [scenarioNodeChildId], references: [id])
-  scenarioNodeChildId String
+  scenarioNodeChild   scenarioNode? @relation(fields: [scenarioNodeChildId], references: [id])
+  scenarioNodeChildId String?
 }
