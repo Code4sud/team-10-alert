@@ -6,7 +6,7 @@ import "./header.css";
 import { useEffect, useState } from "react";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
-import {Outlet} from "react-router-dom";
+
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -97,7 +97,6 @@ export default function Header() {
                 </div>
             </nav>
         </header>
-      <Outlet />
     </>
   );
 }
