@@ -8,6 +8,15 @@ export class EnvironmentVariables {
   PORT: number = 3000;
 
   @IsString()
+  FRONT_URL: string = 'http://localhost:3000';
+
+  @IsString()
+  JWT_SECRET: string = 'mY-SUp3r-S3cr3t[JwT]*T0k3n';
+
+  @IsString()
+  JWT_EXPIRATION: string = '7d';
+
+  @IsString()
   DATABASE_URL: string;
 }
 
