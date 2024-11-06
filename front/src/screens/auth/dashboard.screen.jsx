@@ -1,6 +1,6 @@
 const DashboardScreen = () => {
     return (
-        <div className="text-white mt-60">Dashboard</div>
+        <div className="text-white">Dashboard</div>
     );
 }
 

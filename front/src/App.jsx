@@ -20,7 +20,7 @@ const authRouter = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout />,
-        errorElement: <div>404</div>,
+        errorElement: <div className="text-white">Erreur 404 ! Page non trouvée</div>,
         children: [
             { index: true, element: <HomeScreen /> },
             { 
