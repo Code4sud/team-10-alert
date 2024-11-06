@@ -37,15 +37,13 @@ async function bootstrap() {
     swaggerOptions: { persistAuthorization: true, filter: true },
   });
 
-  app.use(
-    '/api/doc',
-    apiReference({ spec: { content: document }, theme: 'moon' }),
-  );
+  app.use('/api/doc', apiReference({ spec: { content: document }, theme: 'moon' }));
 
   const configService = app.get(ConfigService<EnvironmentVariables, true>);
   await app.listen(configService.get('PORT'));
-  Logger.error(
+  Logger.debug(
     `\nServer running on http://localhost:${configService.get('PORT')}\nCheck the API documentation at http://localhost:${configService.get('PORT')}/api/doc`,
   );
 }
+
 bootstrap();
