@@ -28,7 +28,7 @@ async function bootstrap() {
     .setTitle('CHIPS API')
     .setDescription('Routes description of the Chips API')
     .setVersion('1.0')
-    .addBearerAuth({ type: 'apiKey', name: 'x-user', in: 'header' }, 'x-user')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
@@ -45,7 +45,7 @@ async function bootstrap() {
   const configService = app.get(ConfigService<EnvironmentVariables, true>);
   await app.listen(configService.get('PORT'));
   Logger.error(
-    `Server running on http://localhost:${configService.get('PORT')}`,
+    `\nServer running on http://localhost:${configService.get('PORT')}\nCheck the API documentation at http://localhost:${configService.get('PORT')}/api/doc`,
   );
 }
 bootstrap();
