@@ -2,17 +2,29 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class GetPlayerDto {
   @ApiProperty()
-  gameLevel: number;
+  firstname: string;
 
   @ApiProperty()
-  gender: string;
+  lastname: string;
 
   @ApiProperty()
-  avatar: string;
+  age: number;
 
   @ApiProperty()
-  health: number;
+  phoneNumber: string;
 
   @ApiProperty()
-  score: number;
+  parentPhoneNumber: string;
+
+  @ApiProperty()
+  postalCode: string;
+
+  @ApiProperty()
+  avatarUrl: string;
+
+  @ApiProperty()
+  healthPoints: number;
+
+  @ApiProperty()
+  wisePoints: number;
 }
