@@ -15,6 +15,7 @@ import {QuestionNode} from "@/components/QuestionNode";
 import {ScenarioNode} from "@/components/ScenarioNode";
 import {v4 as uuidv4} from 'uuid';
 import {useDebounce} from "@/hooks/use-debounce";
+import {scenarioRequests} from "@/store/dashboard-nodes/dashboard-nodes.request";
 
 const getNewId = () => uuidv4()
 const initialNodes = [
@@ -32,7 +33,6 @@ const initialNodes = [
         id: 'a',
         type: 'question',
         data: {
-            label: 'Titre de la question',
             description: 'Description de la question',
         },
         position: {x: -16, y: 240},
@@ -40,9 +40,7 @@ const initialNodes = [
     {
         id: '1',
         type: 'response',
-        data: {
-            label: 'Response n° 1',
-        },
+        data: {},
         position: {x: 279, y: 480},
     },
     {
@@ -71,22 +69,19 @@ const initialEdges = [
 
 const nodeTypes = {scenario: ScenarioNode, question: QuestionNode, response: ResponseNode};
 
-const nodeOrigin = [0.5, 0];
+const nodeOrigin: [number, number] = [0.5, 0];
 
 const Chart = () => {
 
     const [nodes, setNodes] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-    const {screenToFlowPosition} = useReactFlow();
+    const reactFlowInstance = useReactFlow();
 
-    const handleSaveScenario = (value: any) => {
-        /**
-         * TODO :
-         *  handle save data in server
-         *
-         **/
-        console.log("Saving to database -- ", nodes)
-        console.log("Saving to database -- ", edges)
+    const handleSaveScenario = async (value: any) => {
+        return scenarioRequests.createOrUpdateScenario({
+            nodes: reactFlowInstance.getNodes(),
+            edges: reactFlowInstance.getEdges()
+        })
     }
     const debouncedSave = useDebounce(handleSaveScenario, 1000);
 
@@ -105,6 +100,12 @@ const Chart = () => {
         (params) => setEdges((eds) => {
             console.log('onConnect ', params)
             console.log(eds)
+            const newEdge = {
+                id: `${params.source}-${params.target}`,
+                target: params.target,
+                source: params.source
+            }
+            //reactFlowInstance.addEdges(newEdge)
             return addEdge(params, eds)
         }),
         [setEdges],
@@ -122,12 +123,12 @@ const Chart = () => {
                 const nodeTypeFrom = connectionState.fromNode.type
                 let newNode = {
                     id,
-                    position: screenToFlowPosition({
+                    position: reactFlowInstance.screenToFlowPosition({
                         x: clientX,
                         y: clientY,
                     }),
                     data: {},
-                    origin: [0.5, 0.0],
+                    origin: nodeOrigin,
                     type: ""
                 }
 
@@ -141,14 +142,14 @@ const Chart = () => {
                     newNode.type = "question"
                 }
 
-
-                setNodes((nds) => nds.concat(newNode));
-                setEdges((eds) =>
-                    eds.concat({id, source: connectionState.fromNode.id, target: id, xp: -2})
+                reactFlowInstance.addNodes(newNode)
+                reactFlowInstance.addEdges(
+                    {id: getNewId(), source: connectionState.fromNode.id, target: id}
                 )
+
             }
         },
-        [screenToFlowPosition],
+        [reactFlowInstance.screenToFlowPosition],
     );
 
 

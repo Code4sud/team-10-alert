@@ -1,4 +1,3 @@
-import {useCallback} from 'react';
 import {Handle, Position, useReactFlow} from '@xyflow/react';
 import {Card, CardContent, CardHeader, CardTitle} from './ui/card';
 import {Label} from "@/components/ui/label";
@@ -12,10 +11,7 @@ type ScenarioProps = {
     photo: string
 }
 
-export function ScenarioNode({data, id, isConnectable}: { data: ScenarioProps, id: any, isConnectable: any }) {
-    const onChange = useCallback((evt: any) => {
-        console.log(evt.target.value);
-    }, []);
+export function ScenarioNode({data, id}: { data: ScenarioProps, id: any, isConnectable: any }) {
     const {updateNodeData} = useReactFlow();
     return (
         <div>
