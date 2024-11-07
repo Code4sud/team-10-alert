@@ -8,17 +8,29 @@ export class Player {
   user_id: string;
 
   @Column()
-  gameLevel: number;
+  firstname: string;
 
   @Column()
-  gender: string;
+  lastname: string;
 
   @Column()
-  avatar: string;
+  age: number;
 
   @Column()
-  health: number;
+  phoneNumber: string;
 
   @Column()
-  score: number;
+  parentPhoneNumber: string;
+
+  @Column()
+  postalCode: string;
+
+  @Column()
+  avatarUrl: string;
+
+  @Column({ default: 100 })
+  healthPoints: number;
+
+  @Column({ default: 100 })
+  wisePoints: number;
 }

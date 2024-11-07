@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { RegisterDto } from 'src/auth/_utils/dto/requests/register.dto';
 import { EncryptionService } from 'src/encryption/encryption.service';
-import { UsersRepository } from './users.repository';
 import { PlayersRepository } from '../players/players.repository';
 import { User, UserRoleEnum } from './schemas/users.schema';
 import { UsersMapper } from './users.mapper';
+import { UsersRepository } from './users.repository';
 
 @Injectable()
 export class UsersService {
@@ -23,7 +23,7 @@ export class UsersService {
   getAllUsers = () => this.usersRepository.getAllUsers();
 
   async getConnectedUser(user: User) {
-    if (user.role === UserRoleEnum.USER) return this.usersMapper.toGetUser(user);
+    if (user.role !== UserRoleEnum.USER) return this.usersMapper.toGetUser(user);
     else {
       const player = await this.playersRepository.findOneById(user.id);
       return this.usersMapper.toGetUserWithPlayerDto(user, player);

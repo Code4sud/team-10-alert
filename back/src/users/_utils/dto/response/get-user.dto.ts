@@ -1,15 +1,9 @@
-import { UserRoleEnum } from '../../user-role.enum';
 import { ApiProperty } from '@nestjs/swagger';
+import { UserRoleEnum } from '../../user-role.enum';
 
 export class GetUserDto {
   @ApiProperty()
   id: string;
-
-  @ApiProperty()
-  firstname: string;
-
-  @ApiProperty()
-  lastname: string;
 
   @ApiProperty()
   email: string;

@@ -17,4 +17,6 @@ export class UsersRepository {
   findOneByEmail = (email: string) => this.userModel.findOne({ where: { email } });
 
   updatePasswordById = (id: string, pass: string) => this.userModel.update(id, { password: pass });
+
+  findOneById = (id: string) => this.userModel.findOneBy({ id });
 }

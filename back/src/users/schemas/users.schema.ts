@@ -17,18 +17,6 @@ export class User {
   @Column()
   password: string;
 
-  @Column()
-  firstname: string;
-
-  @Column()
-  lastname: string;
-
-  @Column()
-  phoneNumber: string;
-
-  @Column({ nullable: true, default: null })
-  parentPhoneNumber: string;
-
   @Column({
     default: UserRoleEnum.USER,
   })
