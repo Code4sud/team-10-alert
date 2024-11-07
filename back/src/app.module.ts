@@ -1,18 +1,30 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { validateEnv } from './_utils/config/environment.config';
-import { PrismaModule } from './prisma/prisma.module';
-import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { DashboardNodesModule } from './dashboard-nodes/dashboard-nodes.module';
 import { EncryptionModule } from './encryption/encryption.module';
+import { PrismaModule } from './prisma/prisma.module';
+import { ScenarioModule } from './scenario/scenario.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ validate: validateEnv, isGlobal: true }),
+    TypeOrmModule.forRoot({
+      type: 'sqlite',
+      database: './database/database.sqlite',
+      autoLoadEntities: true,
+      synchronize: true,
+      logging: true,
+    }),
     UsersModule,
     AuthModule,
     EncryptionModule,
     PrismaModule,
+    ScenarioModule,
+    DashboardNodesModule,
   ],
   controllers: [],
   providers: [],
