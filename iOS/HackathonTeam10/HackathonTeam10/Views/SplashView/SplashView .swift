@@ -8,11 +8,31 @@
 
 import SwiftUI
 
+
+
 struct SplashView: View {
+
     var body: some View {
         ZStack {
-            Color.black.frame(width: .infinity, height: .infinity)
-            Text("Splash").foregroundStyle(.white)
+            Image("splash_bg")
+                .resizable()
+                .scaledToFill()
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                .clipped()
+                .ignoresSafeArea()
+            Image("logo")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 350)
         }
     }
+}
+
+#Preview {
+    SplashView()
+}
+
+
+#Preview {
+    SplashView()
 }
