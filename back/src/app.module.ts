@@ -5,10 +5,10 @@ import { validateEnv } from './_utils/config/environment.config';
 import { AuthModule } from './auth/auth.module';
 import { DashboardNodesModule } from './dashboard-nodes/dashboard-nodes.module';
 import { EncryptionModule } from './encryption/encryption.module';
+import { PlayersModule } from './players/players.module';
 import { ScenarioModule } from './scenario/scenario.module';
 import { UsersModule } from './users/users.module';
-import { PlayersModule } from './players/players.module';
-import { TodosModule } from './todos/todos.module';
+import { VigilanceModule } from './vigilance/vigilance.module';
 
 @Module({
   imports: [
@@ -26,7 +26,7 @@ import { TodosModule } from './todos/todos.module';
     ScenarioModule,
     DashboardNodesModule,
     PlayersModule,
-    TodosModule,
+    VigilanceModule,
   ],
   controllers: [],
   providers: [],

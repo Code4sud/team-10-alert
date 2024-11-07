@@ -77,3 +77,39 @@ VALUES
 ('resp-009', 'Follow the longer, safer path', 'SUPER', 'A wise choice that preserves your strength', 2, 2, 'node-008',
  'node-010'),
 ('resp-010', 'Rest in the cave', 'SUPER', 'The shelter provides needed recovery', 5, 1, 'node-009', 'node-010');
+
+-- Insertion de données de vigilance
+INSERT INTO vigilance (id, alertType, vigilanceType, alertStartDate)
+VALUES ('vigilance-001', 'Fire Alert', 'High', '2024-01-01'),
+       ('vigilance-002', 'Flood Alert', 'Medium', '2024-02-01'),
+       ('vigilance-003', 'Storm Alert', 'Low', '2024-03-01');
+
+-- Insertion de tâches de vigilance
+INSERT INTO vigilance_todo (id, task)
+VALUES ('todo-001', 'Evacuate the area'),
+       ('todo-002', 'Prepare emergency kit'),
+       ('todo-003', 'Contact emergency services'),
+       ('todo-004', 'Monitor weather updates'),
+       ('todo-005', 'Secure all windows and doors');
+
+-- Insertion d'utilisateurs
+INSERT INTO "user" (id, email, password, firstname, lastname, phoneNumber, parentPhoneNumber, role, createdAt, updatedAt)
+VALUES ('user-001', 'user1@example.com', 'hashedpassword1', 'John', 'Doe', '1234567890', NULL, 'USER', '2024-01-01', '2024-01-01'),
+       ('user-002', 'user2@example.com', 'hashedpassword2', 'Jane', 'Smith', '0987654321', NULL, 'USER', '2024-01-02', '2024-01-02'),
+       ('user-003', 'admin@example.com', 'hashedpassword3', 'Admin', 'User', '1122334455', NULL, 'ADMIN', '2024-01-03', '2024-01-03');
+
+-- Lier les tâches de vigilance aux utilisateurs et aux vigilances
+INSERT INTO user_vigilance_todo (id, isChecked, completionDate, userId, vigilanceId, vigilanceTodoId)
+VALUES
+-- Assignation des tâches de vigilance à l'utilisateur 1 pour la vigilance 1
+('uvt-001', false, NULL, 'user-001', 'vigilance-001', 'todo-001'),
+('uvt-002', false, NULL, 'user-001', 'vigilance-001', 'todo-002'),
+('uvt-003', false, NULL, 'user-001', 'vigilance-001', 'todo-003'),
+
+-- Assignation des tâches de vigilance à l'utilisateur 2 pour la vigilance 2
+('uvt-004', false, NULL, 'user-002', 'vigilance-002', 'todo-004'),
+('uvt-005', false, NULL, 'user-002', 'vigilance-002', 'todo-005'),
+
+-- Assignation des tâches de vigilance à l'utilisateur 3 pour la vigilance 3
+('uvt-006', true, '2024-01-01', 'user-003', 'vigilance-003', 'todo-001'),
+('uvt-007', false, NULL, 'user-003', 'vigilance-003', 'todo-003');
