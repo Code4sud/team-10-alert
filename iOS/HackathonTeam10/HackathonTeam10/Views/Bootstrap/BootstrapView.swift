@@ -19,13 +19,21 @@ struct BootstrapView: View {
             case .unauthenticated:
                 LoginView()
             case .splash:
-                SplashView()
+                //SplashView()
+                HomeView()
             }
         }
+<<<<<<< Updated upstream
         //.glassBackgroundEffect()
     }
 }
 
 #Preview {
+=======
+    }
+}
+
+#Preview() {
+>>>>>>> Stashed changes
     BootstrapView()
 }

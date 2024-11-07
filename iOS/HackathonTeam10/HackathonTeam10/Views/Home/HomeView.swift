@@ -9,6 +9,28 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
+<<<<<<< Updated upstream
         Text("HOME-MAP")
+=======
+        VStack {
+            CustomTextField(text: "", placeholder: "coucou", title: "Hello")
+            
+            CustomTextField(text: "", placeholder: "blabla", title: "bla")
+            CustomTextField(text: "", placeholder: "saisissez mot de passe", title: "Mot de passe", secure: true)
+                .padding(.bottom, 30)
+            
+            CustomButton(text:"Valider") {
+                
+            }
+        }
+        .padding(50)
+        .frame(height: .infinity)
+        .background(.black)
+            
+>>>>>>> Stashed changes
     }
+}
+
+#Preview() {
+    HomeView()
 }
