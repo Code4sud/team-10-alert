@@ -15,5 +15,5 @@ export class GetUserDto {
   email: string;
 
   @ApiProperty({ enum: UserRoleEnum })
-  role: UserRoleEnum;
+  role: string;
 }
