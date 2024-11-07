@@ -1,16 +1,23 @@
 export interface LoginDto {
-  access_token: string;
+  email: string;
+  password: string;
+}
+
+export interface LoginResponseDto {
+  accessToken: string;
   user: GetUserDto;
 }
 
 export interface RegisterDto {
-  userName: string;
-  mail: string;
+  email: string;
   password: string;
 }
 
 export interface GetUserDto {
   id: string;
-  userName: string;
-  mail: string;
+  email: string;
+  password: string;
+  role: string;
+  createdAt: string;
+  updatedAt: string;
 }

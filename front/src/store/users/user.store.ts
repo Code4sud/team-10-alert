@@ -1,6 +1,6 @@
-import { create } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
-import { GetUserDto } from './user.model';
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
+import { GetUserDto, LoginResponseDto } from "./user.model";
 
 interface IAuthState {
   accessToken: string | null;
@@ -8,7 +8,7 @@ interface IAuthState {
 }
 
 interface IAuthAction {
-  login: (accessToken: string, user: GetUserDto) => void;
+  login: (by: LoginResponseDto) => void;
   logout: () => void;
 }
 
@@ -17,11 +17,11 @@ export const useUserStore = create<IAuthAction & IAuthState>()(
     (set) => ({
       accessToken: null,
       user: null,
-      login: (accessToken: string, user: GetUserDto) => set({ accessToken: accessToken, user: user }),
+      login: (auth: LoginResponseDto) => set({ accessToken: auth.accessToken, user: auth.user }),
       logout: () => set({ accessToken: null, user: null }),
     }),
     {
-      name: 'accessToken',
+      name: "accessToken",
       storage: createJSONStorage(() => localStorage),
     },
   ),
