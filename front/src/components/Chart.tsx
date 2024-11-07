@@ -1,46 +1,103 @@
-import { useCallback, useRef } from 'react';
+import {useCallback, useRef} from 'react';
 import {
-    ReactFlow,
-    useNodesState,
-    useEdgesState,
     addEdge,
-    useReactFlow, Background, Controls,
+    applyNodeChanges,
+    Background,
+    Controls,
+    ReactFlow,
+    useEdgesState,
+    useNodesState,
+    useReactFlow,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import NodeCustom from "@/components/NodeCustom";
-
-
+import {ResponseNode} from "@/components/ResponseNode";
+import {QuestionNode} from "@/components/QuestionNode";
+import {ScenarioNode} from "@/components/ScenarioNode";
+import {Button} from "@/components/ui/button";
 
 const initialNodes = [
     {
-        id: '0',
-        type: 'nodeCustom',
+        id: 'init',
+        type: 'scenario',
         data: {
-            label: 'Node',
-            description: 'Node description',
-            imageUrl: 'https://via.placeholder.com/150',
-            choices: [
-                { text: 'Choice 1', impactLife: -2, impactWisdom: 3, childNodeId: 4},
-                { text: 'Choice 2', impactLife: 1, impactWisdom: -1, childNodeId: 5}
-            ]
+            title: 'Scneario n° 1 : ile de l enfer ',
+            photo: "url",
+            description: 'une description denfer',
         },
-        position: { x: 0, y: 50 },
+        position: {x: 0, y: 50},
+    },
+    {
+        id: 'a',
+        type: 'question',
+        data: {
+            label: 'Titre de la question',
+            description: 'Description de la question',
+        },
+        position: {x: 0, y: 50},
+    },
+    {
+        id: '1',
+        type: 'response',
+        data: {
+            label: 'Response n° 1',
+        },
+        position: {x: 50, y: 50},
+    },
+    {
+        id: '2',
+        type: 'response',
+        data: {
+            label: 'Response n° 2',
+        },
+        position: {x: 50, y: 50},
+    },
+    {
+        id: '3',
+        type: 'response',
+        data: {
+            label: 'Response n° 3',
+        },
+        position: {x: 50, y: 50},
     },
 ];
+
+const nodeTypes = {scenario: ScenarioNode, question: QuestionNode, response: ResponseNode};
 
 let id = 1;
 const getId = () => `${id++}`;
 const nodeOrigin = [0.5, 0];
-const nodeTypes = { nodeCustom: NodeCustom};
 
 const Chart = () => {
     const reactFlowWrapper = useRef(null);
 
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-    const { screenToFlowPosition } = useReactFlow();
+    const [nodes, setNodes] = useNodesState(initialNodes);
+    const [edges, setEdges] = useEdgesState([]);
+    const {screenToFlowPosition} = useReactFlow();
+
+
+    const onNodesChange = useCallback(
+        (changes) => setNodes((nds) => {
+            console.log("Here ", changes)
+            console.log(nds)
+            return applyNodeChanges(changes, nds)
+        }),
+        [],
+    );
+
+    const onEdgesChange = useCallback(
+        (changes) => setEdges((edges) => {
+            console.log("onedgesChanges ", changes)
+            console.log(edges)
+        }),
+        []
+    )
+
     const onConnect = useCallback(
-        (params) => setEdges((eds) => addEdge(params, eds)),
+        (params) => setEdges((eds) => {
+            console.log('onConnect ', params)
+            console.log(eds)
+            addEdge(params, eds)
+        }),
         [],
     );
 
@@ -50,7 +107,7 @@ const Chart = () => {
             if (!connectionState.isValid) {
                 // we need to remove the wrapper bounds, in order to get the correct position
                 const id = getId();
-                const { clientX, clientY } =
+                const {clientX, clientY} =
                     'changedTouches' in event ? event.changedTouches[0] : event;
                 const newNode = {
                     id,
@@ -58,37 +115,47 @@ const Chart = () => {
                         x: clientX,
                         y: clientY,
                     }),
-                    data: { label: `Node ${id}` },
+                    data: {label: `Node ${id}`},
                     origin: [0.5, 0.0],
                 };
 
                 setNodes((nds) => nds.concat(newNode));
-                setEdges((eds) =>
-                    eds.concat({ id, source: connectionState.fromNode.id, target: id, xp: -2 }),
+                setEdges((eds) => {
+                    }
+                    //eds.concat({id, source: connectionState.fromNode.id, target: id, xp: -2}),
                 );
             }
         },
         [screenToFlowPosition],
     );
+    const test = () => {
+        console.log(edges)
+        console.log(nodes)
+    }
 
     return (
-        <div className="wrapper w-screen h-screen" ref={reactFlowWrapper}>
-            <ReactFlow
-                nodes={nodes}
-                edges={edges}
-                onNodesChange={onNodesChange}
-                onEdgesChange={onEdgesChange}
-                onConnect={onConnect}
-                onConnectEnd={onConnectEnd}
-                fitView
-                fitViewOptions={{padding: 2}}
-                nodeOrigin={nodeOrigin}
-                nodeTypes={nodeTypes}
-            >
-                <Background/>
-                <Controls/>
-            </ReactFlow>
-        </div>
+        <>
+            <div className="wrapper w-screen h-screen" ref={reactFlowWrapper}>
+                <ReactFlow
+                    nodes={nodes}
+                    edges={edges}
+                    onNodesChange={onNodesChange}
+                    onEdgesChange={onEdgesChange}
+                    onConnect={onConnect}
+                    onConnectEnd={onConnectEnd}
+                    fitView
+                    nodeTypes={nodeTypes}
+                    fitViewOptions={{padding: 2}}
+                    nodeOrigin={nodeOrigin}
+                    snapToGrid
+                >
+                    <Background/>
+                    <Controls/>
+                </ReactFlow>
+
+            </div>
+            <Button onMouseDown={test}></Button>
+        </>
     );
 };
 
