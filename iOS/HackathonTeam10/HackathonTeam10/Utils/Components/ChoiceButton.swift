@@ -21,18 +21,13 @@ struct ChoiceButton: View {
                 .frame(maxWidth: .infinity)
                 .background(
                     RoundedRectangle(cornerRadius: 12)
-                        .fill(Color(.button))
-                )
-                .foregroundStyle(.white)
-                .background(
-                    RoundedRectangle(cornerRadius: 12)
                         .fill(Color(.primary))
                 )
+                .foregroundStyle(.white)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(Color.white, lineWidth: 1)
                 )
-                //.shadow(Color(.secondary).opacity(0.8))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
         }

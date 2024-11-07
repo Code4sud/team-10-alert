@@ -28,7 +28,7 @@ struct CustomButton: View {
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(Color.white, lineWidth: 1)
                 )
-                .shadow( color: Color(.secondary).opacity(0.4), radius: 12)
+                .shadow( color: Color(.secondary).opacity(0.3), radius: 12)
             
         }
     }

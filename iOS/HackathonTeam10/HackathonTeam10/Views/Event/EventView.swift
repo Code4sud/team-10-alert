@@ -61,7 +61,7 @@ struct EventView: View {
             VStack(spacing: 20) {
                
                 ForEach(viewModel.currentNode?.responses ?? [], id: \.description) { response in
-                               CustomButton(text: response.description) {
+                               ChoiceButton(text: response.description) {
                                    viewModel.selectResponse(response)
                                }
                            }

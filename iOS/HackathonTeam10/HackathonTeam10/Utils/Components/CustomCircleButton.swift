@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct CustomCircleButton: View {
-    let action: () -> Void
     let imageName: String
-
+    let action: () -> Void
+    
     var body: some View {
         Button(action: action) {
             ZStack {
@@ -27,6 +27,6 @@ struct CustomCircleButton: View {
                     .frame(width: 44, height: 44)
             }
         }
-        .shadow(color: Color(.secondary).opacity(1), radius: 30)
+        .shadow(color: Color(.secondary).opacity(0.5), radius: 30)
     }
 }
