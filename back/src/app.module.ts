@@ -5,7 +5,6 @@ import { validateEnv } from './_utils/config/environment.config';
 import { AuthModule } from './auth/auth.module';
 import { DashboardNodesModule } from './dashboard-nodes/dashboard-nodes.module';
 import { EncryptionModule } from './encryption/encryption.module';
-import { PrismaModule } from './prisma/prisma.module';
 import { ScenarioModule } from './scenario/scenario.module';
 import { UsersModule } from './users/users.module';
 
@@ -22,7 +21,6 @@ import { UsersModule } from './users/users.module';
     UsersModule,
     AuthModule,
     EncryptionModule,
-    PrismaModule,
     ScenarioModule,
     DashboardNodesModule,
   ],

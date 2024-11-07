@@ -1,7 +1,7 @@
-import { UserRoleEnum } from '../../../users/_utils/user-role.enum';
+import { UserRoleEnum } from 'src/users/schemas/users.schema';
 
 export default interface JwtPayloadInterface {
   id: string;
-  role: UserRoleEnum;
+  role: UserRoleEnum | string;
   email: string;
 }
