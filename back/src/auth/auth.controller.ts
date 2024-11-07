@@ -1,8 +1,8 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { CreateUserDto } from 'src/users/_utils/dto/request/create-user.dto';
 import { UsersService } from 'src/users/users.service';
-import { LoginDto } from './_utils/dto/request/login.dto';
+import { LoginDto } from './_utils/dto/requests/login.dto';
+import { RegisterDto } from './_utils/dto/requests/register.dto';
 import { AuthService } from './auth.service';
 
 @ApiTags('Auth')
@@ -15,8 +15,8 @@ export class AuthController {
 
   @Post('register')
   @ApiOperation({ summary: 'Register user.' })
-  register(@Body() body: CreateUserDto) {
-    // return this.usersService.createUser(body);
+  register(@Body() registerDto: RegisterDto) {
+    return this.usersService.createUser(registerDto);
   }
 
   @Post('login')

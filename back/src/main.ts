@@ -5,6 +5,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { apiReference } from '@scalar/nestjs-api-reference';
 import { useContainer } from 'class-validator';
 import { EnvironmentVariables } from './_utils/config/environment.config';
+import { DuplicateExceptionFilter } from './_utils/duplicate-exception.filter';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -14,6 +15,7 @@ async function bootstrap() {
 
   app
     .setGlobalPrefix('api/v1')
+    .useGlobalFilters(new DuplicateExceptionFilter())
     .useGlobalPipes(
       new ValidationPipe({
         whitelist: true,
