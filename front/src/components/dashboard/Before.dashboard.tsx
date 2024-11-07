@@ -1,11 +1,12 @@
+import { emergencyListBefore } from "@/utils/data/chart.data";
+import { AccordionToDo } from "../Accordion";
+import { DonutChartTargetUser } from "./chart/Donut.chart";
+
 const DashboardBefore = () => {
   return (
     <div className='text-white'>
-      <h1>Dashboard Before</h1>
-      <p>
-        Cette page permet de préparer l'alerte. Vous pouvez ajouter des tâches à
-        faire avant l'alerte.
-      </p>
+      <AccordionToDo emergencyList={emergencyListBefore} />
+      <DonutChartTargetUser />
     </div>
   );
 };
