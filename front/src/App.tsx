@@ -11,7 +11,7 @@ import {Outlet} from "react-router-dom";
 const MainLayout = () => (
     <>
         <Header />
-        <Navbar />
+        {/* <Navbar /> */}
         <Outlet /> 
     </>
 );
