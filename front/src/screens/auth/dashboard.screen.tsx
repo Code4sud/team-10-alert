@@ -72,7 +72,7 @@ const DashboardScreen = () => {
   };
 
   return (
-    <div className='p-6 min-h-screen mt-20 mb-6'>
+    <div className='p-8 flex-grow'>
       <div className='flex justify-between items-center mb-6'>
         <h1 className='text-3xl font-bold text-white'>Dashboard</h1>
         <Dialog>

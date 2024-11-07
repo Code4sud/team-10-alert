@@ -12,8 +12,10 @@ import ManageScenarioScreen from "@/screens/auth/managescenario.screen";
 const MainLayout = () => (
     <>
         <Header />
-        {/* <Navbar /> */}
-        <Outlet /> 
+        <div className='flex h-full p-4 w-full gap-4 mt-20'>
+            <Navbar />
+            <Outlet />
+        </div>
     </>
 );
 
@@ -23,14 +25,9 @@ const authRouter = createBrowserRouter([
         element: <MainLayout />,
         errorElement: <div className="text-white">Erreur 404 ! Page non trouvée</div>,
         children: [
-            { index: true, element: <HomeScreen /> },
+            { index: true, element:  <DashboardScreen /> },
             { 
-                path: '/chart', element: <ChartScreen /> 
-            
-            },
-            {
-                path: '/dashboard', element: <DashboardScreen />
-
+                path: '/chart', element: <ChartScreen />
             },
             {
                 path: '/scenarios', element: <ScenariosScreen />
@@ -39,6 +36,17 @@ const authRouter = createBrowserRouter([
                 path: '/scenarios/:id', element: <ManageScenarioScreen />
             }
 
+        ],
+    },
+]);
+
+const unauthRouter = createBrowserRouter([
+    {
+        path: '/',
+        element: <><Header /><Outlet /></>,
+        errorElement: <div className="text-white">Erreur 404 ! Page non trouvée</div>,
+        children: [
+            { index: true, element: <HomeScreen /> },
         ],
     },
 ]);
