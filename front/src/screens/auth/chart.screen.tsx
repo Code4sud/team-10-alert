@@ -1,4 +1,4 @@
-import Chart from "../../components/Chart.jsx";
+import Chart from "../../components/Chart.js";
 import {ReactFlowProvider} from "@xyflow/react";
 
 export const ChartScreen = () => {

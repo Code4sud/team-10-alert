@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Header from "./layout/Header.jsx";
-import {HomeScreen} from "./screens/unauth/home.screen.jsx";
-import {ChartScreen} from "./screens/auth/chart.screen.jsx";
-import Navbar from "./components/Navbar.jsx";
-import  DashboardScreen  from "./screens/auth/dashboard.screen.jsx";
-import  ScenariosScreen  from "./screens/auth/scenarios.screen.jsx";
+import Header from "./layout/Header";
+import {HomeScreen} from "./screens/unauth/home.screen";
+import {ChartScreen} from "./screens/auth/chart.screen";
+import Navbar from "./components/Navbar";
+import  DashboardScreen  from "./screens/auth/dashboard.screen";
+import  ScenariosScreen  from "./screens/auth/scenarios.screen";
 import {Outlet} from "react-router-dom";
 
 
