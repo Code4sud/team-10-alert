@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { UserVigilanceTodo } from 'src/vigilance/schemas/user-vigilance-todo.schema';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 export enum UserRoleEnum {
   USER = 'USER',
@@ -38,4 +39,7 @@ export class User {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @OneToMany(() => UserVigilanceTodo, (userVigilanceTodo) => userVigilanceTodo.user)
+  userVigilanceTodos: UserVigilanceTodo[];
 }
