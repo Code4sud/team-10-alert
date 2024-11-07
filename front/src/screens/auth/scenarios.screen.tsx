@@ -1,4 +1,5 @@
-import {Card} from "@/components/ui/card";
+import {Button} from "@/components/ui/button";
+import {Card, CardContent, CardFooter, CardTitle} from "@/components/ui/card";
 import ScenarioCard from "@/components/ScenarioCard";
 import React from "react";
 import {Link} from "react-router-dom";
@@ -18,3 +19,4 @@ const ScenariosScreen = () => {
 }
 
 export default ScenariosScreen;
+

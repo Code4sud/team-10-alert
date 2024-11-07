@@ -1,9 +1,9 @@
 export enum AlertType {
-  FORT_PLUIE = 'Forte pluie',
-  GRELE = 'Grele',
+  HEAVY_RAIN = 'Forte pluie',
+  HAIL = 'Grele',
   TSUNAMI = 'Tsunami',
-  TREMBLEMENT_TERRE = 'Tremblement de terre',
-  INONDATION = 'Inondation',
+  EARTHQUAKE = 'Tremblement de terre',
+  FLOOD = 'Inondation',
   CYCLONE = 'Cyclone',
 }
 
@@ -27,13 +27,13 @@ export enum AlertPower {
 }
 
 export const alertPowerMapping = {
-  [AlertType.FORT_PLUIE]: [
+  [AlertType.HEAVY_RAIN]: [
     AlertPower.GREEN,
     AlertPower.YELLOW,
     AlertPower.ORANGE,
     AlertPower.RED,
   ],
-  [AlertType.GRELE]: [
+  [AlertType.HAIL   ]: [
     AlertPower.GREEN,
     AlertPower.YELLOW,
     AlertPower.ORANGE,
@@ -44,7 +44,7 @@ export const alertPowerMapping = {
     AlertPower.ALERTE_DE_NIVEAU_2,
     AlertPower.ALERTE_DE_NIVEAU_3,
   ],
-  [AlertType.TREMBLEMENT_TERRE]: [
+  [AlertType.EARTHQUAKE]: [
     AlertPower.LESS_THAN_3_0,
     AlertPower.BETWEEN_3_0_AND_3_9,
     AlertPower.BETWEEN_4_0_AND_4_9,
@@ -52,7 +52,7 @@ export const alertPowerMapping = {
     AlertPower.BETWEEN_6_0_AND_6_9,
     AlertPower.MORE_THAN_7_0,
   ],
-  [AlertType.INONDATION]: [
+  [AlertType.FLOOD]: [
     AlertPower.GREEN,
     AlertPower.YELLOW,
     AlertPower.ORANGE,
@@ -66,10 +66,10 @@ export const alertPowerMapping = {
 };
 
 export const alertes = [
-  { id: AlertType.FORT_PLUIE, label: 'Forte pluie' },
-  { id: AlertType.GRELE, label: 'Grêle' },
+  { id: AlertType.HEAVY_RAIN, label: 'Forte pluie' },
+  { id: AlertType.HAIL, label: 'Grêle' },
   { id: AlertType.TSUNAMI, label: 'Tsunami' },
-  { id: AlertType.TREMBLEMENT_TERRE, label: 'Tremblement de terre' },
-  { id: AlertType.INONDATION, label: 'Inondation' },
+  { id: AlertType.EARTHQUAKE, label: 'Tremblement de terre' },
+  { id: AlertType.FLOOD, label: 'Inondation' },
   { id: AlertType.CYCLONE, label: 'Cyclone' },
 ];
