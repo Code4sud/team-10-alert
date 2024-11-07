@@ -23,6 +23,7 @@ struct ChooseCharacterView: View {
                 RoundedRectangle(cornerRadius: 12)
                     .fill(Color.primary)
                     .frame(width: 300, height: 600)
+                    .shadow( color: Color(.secondary), radius: 12)
                     .overlay(
                         VStack {
                             Text("Choisissez votre personnage")
@@ -44,6 +45,7 @@ struct ChooseCharacterView: View {
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
                                     .stroke(Color.white, lineWidth: 1)
+                                
                             )
                     )
                 Spacer()
