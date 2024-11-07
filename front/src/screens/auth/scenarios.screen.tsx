@@ -1,24 +1,18 @@
-import {Button} from "@/components/ui/button";
-import {Card, CardContent, CardFooter, CardTitle} from "@/components/ui/card";
+import {Card} from "@/components/ui/card";
+import ScenarioCard from "@/components/ScenarioCard";
+import React from "react";
+import {Link} from "react-router-dom";
 
 const ScenariosScreen = () => {
     return (
-        <div className="w-full h-full p-8">
-            <div className="flex justify-end items-center h-full">
-                <Button variant={"secondary"}>Créer un scénario</Button>
-            </div>
-            <div className="flex justify-center items-center h-full">
-                <Card >
-                  <CardTitle>Scénario 1</CardTitle>
-                  <CardContent>
-                    <p>Un scénario est une suite d'étapes qui permet de simuler un parcours utilisateur.</p>
-                  </CardContent>
-                  <CardFooter>
-                    <Button variant={"outline"}>Modifier</Button>
-                    <Button variant={"destructive"}>Supprimer</Button>
-                  </CardFooter>
-                </Card>
-            </div>
+        <div className="h-full flex gap-4">
+            <Link to='/chart'>
+              <Card className='w-72 h-96 bg-[#203D4E] border-none flex flex-col gap-4 justify-center cursor-pointer items-center'>
+                <img src='src/assets/add-blue.svg' alt='logo' className='w-12 h-12' />
+                <p className='text-xl font-semibold text-[#00D9FF]'>Ajouter un scénario</p>
+              </Card>
+            </Link>
+            <ScenarioCard />
         </div>
     );
 }
