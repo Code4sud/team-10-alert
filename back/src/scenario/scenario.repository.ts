@@ -17,12 +17,13 @@ export class ScenarioRepository {
 
   findScenarioById = (scenarioId: string) => this.scenarioModel.findOneBy({ id: scenarioId });
 
-  createScenario = () =>
-    this.scenarioModel.create({
-      id: '1',
-      name: 'essai23',
-      imageUrl: null,
-      scenarioNodes: [],
-      initialScenarioNodeId: null,
+  createScenario = (name?: string, imageUrl?: string, scenarioNodes?: ScenarioNode[], initialScenarioNode?: string) =>
+    this.scenarioModel.save({
+      name: name || '',
+      imageUrl: imageUrl || null,
+      scenarioNodes: scenarioNodes || [],
+      initialScenarioNodeId: initialScenarioNode || null,
     });
+
+  createScenarioNode = () => this.scenarioNodeModel.save({});
 }

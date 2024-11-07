@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ScenarioRepository } from './scenario.repository';
-import { CreateScenarioDto } from './_utils/dtos/request/create-scenario.dto';
+import { CreateScenarioType } from './_utils/type/create-scenario.type';
+import { CreateScenarioNodeType } from './_utils/type/create-scenario-node.type';
 
 @Injectable()
 export class ScenarioService {
@@ -14,7 +15,13 @@ export class ScenarioService {
     const scenario = await this.scenariosRepository.findScenarioById(scenarioId);
   }
 
-  createScenario(scenario: CreateScenarioDto) {
+  createScenario() {
     return this.scenariosRepository.createScenario();
+  }
+
+  updateScenario(scenarioId: string, data: CreateScenarioType) {}
+
+  createScenarioNode(data: CreateScenarioNodeType) {
+    this.scenariosRepository.createScenarioNode();
   }
 }

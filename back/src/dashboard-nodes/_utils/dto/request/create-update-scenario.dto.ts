@@ -1,222 +1,83 @@
-export class CreateOrUpdateScenarioDto {
-  nodes: Node[];
-  edges: Edge[];
+import { IsArray, IsNumber, IsObject, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+
+export class Size {
+  @IsNumber()
+  width: number;
+
+  @IsNumber()
+  height: number;
+}
+
+export class PositionNode {
+  @IsNumber()
+  x: number;
+
+  @IsNumber()
+  y: number;
 }
 
 export class Node {
+  @IsString()
   id: string;
+
+  @IsString()
   type: string;
+
+  @IsObject()
   data: DataScenarioNode | DataQuestionNode | DataResponseNode;
-  position: { x: number; y: number };
-  measured: { width: number; height: number };
+
+  @IsObject()
+  position: PositionNode;
+
+  @IsObject()
+  measured: Size;
 }
 
 export class Edge {
+  @IsString()
   id: string;
+
+  @IsString()
   source: string;
+
+  @IsString()
   target: string;
 }
 
-type DataScenarioNode = {
+export class UpdateScenarioDto {
+  @IsArray()
+  @Type(() => Node)
+  nodes: Node[];
+
+  @IsArray()
+  @Type(() => Edge)
+  edges: Edge[];
+}
+
+export class DataScenarioNode {
+  @IsString()
   title: string;
+
+  @IsString()
   photo: string;
-  description: string;
-};
 
-type DataQuestionNode = {
+  @IsString()
   description: string;
-};
+}
 
-type DataResponseNode = {
+export class DataQuestionNode {
+  @IsString()
   description: string;
+}
+
+export class DataResponseNode {
+  @IsString()
+  description: string;
+
+  @IsString()
   effect: string;
+
+  @IsString()
   score: string;
-};
-
-const ex = {
-  nodes: [
-    {
-      id: 'a',
-      type: 'question',
-      data: { description: 'Description de la question' },
-      position: { x: -16, y: 240 },
-      measured: { width: 238, height: 188 },
-    },
-    {
-      id: '1',
-      type: 'response',
-      data: { label: 'Response n° 1' },
-      position: { x: 39, y: 735 },
-      measured: { width: 228, height: 304 },
-      selected: true,
-      dragging: false,
-    },
-    {
-      id: '2',
-      type: 'response',
-      data: { label: 'Response n° 2' },
-      position: { x: -21, y: 480 },
-      measured: { width: 228, height: 304 },
-    },
-    {
-      id: '3',
-      type: 'response',
-      data: { label: 'Response n° 3' },
-      position: { x: -336, y: 480 },
-      measured: { width: 228, height: 304 },
-    },
-  ],
-  edges: [
-    { id: 'einit-a', source: 'init', target: 'a' },
-    {
-      id: 'ea-1',
-      source: 'a',
-      target: '1',
-    },
-    { id: 'ea-2', source: 'a', target: '2' },
-    { id: 'ea-3', source: 'a', target: '3' },
-  ],
-};
-
-//
-// {
-//     nodes: [
-//         {
-//             id: 'init',
-//             type: 'scenario',
-//             data: [Object],
-//             position: [Object],
-//             measured: [Object]
-//         },
-//         {
-//             id: 'a',
-//             type: 'question',
-//             data: [Object],
-//             position: [Object],
-//             measured: [Object]
-//         },
-//         {
-//             id: '1',
-//             type: 'response',
-//             data: [Object],
-//             position: [Object],
-//             measured: [Object],
-//             selected: true,
-//             dragging: false
-//         },
-//         {
-//             id: '2',
-//             type: 'response',
-//             data: [Object],
-//             position: [Object],
-//             measured: [Object]
-//         },
-//         {
-//             id: '3',
-//             type: 'response',
-//             data: [Object],
-//             position: [Object],
-//             measured: [Object]
-//         }
-//     ],
-//         edges: [
-//     { id: 'einit-a', source: 'init', target: 'a' },
-//     { id: 'ea-1', source: 'a', target: '1' },
-//     { id: 'ea-2', source: 'a', target: '2' },
-//     { id: 'ea-3', source: 'a', target: '3' }
-// ]
-// }
-// {
-//     nodes: [
-//         {
-//             id: 'init',
-//             type: 'scenario',
-//             data: [Object],
-//             position: [Object],
-//             measured: [Object]
-//         },
-//         {
-//             id: 'a',
-//             type: 'question',
-//             data: [Object],
-//             position: [Object],
-//             measured: [Object]
-//         },
-//         {
-//             id: '1',
-//             type: 'response',
-//             data: [Object],
-//             position: [Object],
-//             measured: [Object],
-//             selected: true,
-//             dragging: false
-//         },
-//         {
-//             id: '2',
-//             type: 'response',
-//             data: [Object],
-//             position: [Object],
-//             measured: [Object]
-//         },
-//         {
-//             id: '3',
-//             type: 'response',
-//             data: [Object],
-//             position: [Object],
-//             measured: [Object]
-//         }
-//     ],
-//         edges: [
-//     { id: 'einit-a', source: 'init', target: 'a' },
-//     { id: 'ea-1', source: 'a', target: '1' },
-//     { id: 'ea-2', source: 'a', target: '2' },
-//     { id: 'ea-3', source: 'a', target: '3' }
-// ]
-// }
-// {
-//     nodes: [
-//         {
-//             id: 'init',
-//             type: 'scenario',
-//             data: [Object],
-//             position: [Object],
-//             measured: [Object]
-//         },
-//         {
-//             id: 'a',
-//             type: 'question',
-//             data: [Object],
-//             position: [Object],
-//             measured: [Object]
-//         },
-//         {
-//             id: '1',
-//             type: 'response',
-//             data: [Object],
-//             position: [Object],
-//             measured: [Object],
-//             selected: true,
-//             dragging: false
-//         },
-//         {
-//             id: '2',
-//             type: 'response',
-//             data: [Object],
-//             position: [Object],
-//             measured: [Object]
-//         },
-//         {
-//             id: '3',
-//             type: 'response',
-//             data: [Object],
-//             position: [Object],
-//             measured: [Object]
-//         }
-//     ],
-//         edges: [
-//     { id: 'einit-a', source: 'init', target: 'a' },
-//     { id: 'ea-1', source: 'a', target: '1' },
-//     { id: 'ea-2', source: 'a', target: '2' },
-//     { id: 'ea-3', source: 'a', target: '3' }
-// ]
-// }
+}

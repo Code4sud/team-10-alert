@@ -6,17 +6,14 @@ export class Scenario {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ nullable: true })
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
 
   @Column({ nullable: true })
   imageUrl: string;
-
-  @Column()
-  difficulty: number;
 
   @OneToMany(() => ScenarioNode, (node) => node.scenario)
   scenarioNodes: ScenarioNode[];

@@ -11,5 +11,6 @@ import { ScenarioRepository } from './scenario.repository';
   imports: [TypeOrmModule.forFeature([Scenario, ScenarioNode, ScenarioResponse])],
   controllers: [ScenarioController],
   providers: [ScenarioService, ScenarioRepository],
+  exports: [ScenarioService, ScenarioRepository],
 })
 export class ScenarioModule {}
