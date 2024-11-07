@@ -1,0 +1,109 @@
+{
+  "scenarioId": "id1",
+  "initialNode": {
+    "id": "1",
+    "description": "C'est l'etape 1 au lycée. Qu'est ce que vous faites ?",
+    "responses": [
+      {
+        "description": "Option 1 du 1er noeud ",
+        "effectDescription": " Effet de description",
+        "score": "SUPER",
+        "healthEffect": 5,
+        "wiseEffect": -10,
+        "targetQuestionId": "2"
+      },
+      {
+        "description": "Option 2 du 1er noeud",
+        "effectDescription": " Effet de description",
+        "score": "T'ES UNE MERDE",
+        "healthEffect": 15,
+        "wiseEffect": 20,
+        "targetQuestionId": "2"
+      },
+      {
+        "description": "Option 3 du 1er noeud ",
+        "effectDescription": " Effet de description",
+        "score": "SUPER",
+        "healthEffect": 35,
+        "wiseEffect": -25,
+        "targetQuestionId": "2"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "2",
+      "description": "C'est l'etape 2 dans la rue",
+      "responses": [
+        {
+          "description": "Option 1 du 2eme noeud  ",
+          "effectDescription": " Effet de description",
+          "score": "SUPER",
+          "healthEffect": -35,
+          "wiseEffect": 25,
+          "targetQuestionId": "3"
+        },
+        {
+          "description": "Option 2 du 2eme noeud ",
+          "effectDescription": " Effet de description",
+          "score": "T'ES UNE MERDE",
+          "healthEffect": -20,
+          "wiseEffect": -15,
+          "targetQuestionId": "2"
+        },
+        {
+          "description": "Option 3 du 2eme noeud ",
+          "effectDescription": " Effet de description",
+          "score": "T'ES UNE MERDE",
+          "healthEffect": -40,
+          "wiseEffect": -50,
+          "targetQuestionId": "2"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "description": "C'est l'etape 3 dans le tram",
+      "responses": [
+        {
+          "description": "Option 1 du 3eme noeud ",
+          "effectDescription": " Effet de description",
+          "score": "SUPER",
+          "healthEffect": 50,
+          "wiseEffect": -5,
+          "parentQuestionId": "1",
+          "targetQuestionId": "2"
+        },
+        {
+          "description": "Option 2 du 3eme noeud ",
+          "effectDescription": " Effet de description",
+          "score": "T'ES UNE MERDE",
+          "healthEffect": -40,
+          "wiseEffect": 40,
+          "parentQuestionId": "1",
+          "targetQuestionId": "2"
+        },
+        {
+          "description": "Option 3 du 3eme noeud ",
+          "effectDescription": " Effet de description",
+          "score": "SUPER",
+          "healthEffect": -30,
+          "wiseEffect": 30,
+          "parentQuestionId": "1",
+          "targetQuestionId": "2"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+

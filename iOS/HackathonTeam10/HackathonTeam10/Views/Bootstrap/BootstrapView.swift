@@ -15,25 +15,16 @@ struct BootstrapView: View {
         Group {
             switch vm.userState.authState {
             case .authenticated:
-                HomeView()
+                GameView()
             case .unauthenticated:
                 LoginView()
             case .splash:
-                //SplashView()
-                HomeView()
+                GameView()
             }
         }
-<<<<<<< Updated upstream
-        //.glassBackgroundEffect()
-    }
-}
-
-#Preview {
-=======
     }
 }
 
 #Preview() {
->>>>>>> Stashed changes
     BootstrapView()
 }
