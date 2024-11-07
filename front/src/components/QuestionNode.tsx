@@ -5,7 +5,11 @@ import {Textarea} from "@/components/ui/textarea";
 
 const handleStyle = {left: 10};
 
-export function QuestionNode({data, id, isConnectable}: { data: any, id: any, isConnectable: any }) {
+type QuestionProps = {
+    description: string
+}
+
+export function QuestionNode({data, id, isConnectable}: { data: QuestionProps, id: any, isConnectable: any }) {
     const onChange = useCallback((evt: any) => {
         console.log(evt.target.value);
     }, []);
@@ -14,7 +18,7 @@ export function QuestionNode({data, id, isConnectable}: { data: any, id: any, is
         <div>
             <Handle
                 type="target"
-                position={Position.Left}
+                position={Position.Top}
                 isConnectable={isConnectable}
             />
             <Card className="bg-slate-800 text-white border-none">
@@ -23,14 +27,14 @@ export function QuestionNode({data, id, isConnectable}: { data: any, id: any, is
                 </CardHeader>
                 <CardContent>
                     <Textarea
-                        className="bg-slate-900 border-none min-h-[100px]"
+                        className="bg-slate-900 border-none min-h-[100px] nodrag"
                         placeholder="Saisissez votre question ..."
-                        onChange={(evt) => updateNodeData(id, {text: evt.target.value})}
-                        value={data.text}
+                        onChange={(evt) => updateNodeData(id, {description: evt.target.value})}
+                        value={data.description}
                     />
                 </CardContent>
             </Card>
-            <Handle type="source" position={Position.Right}/>
+            <Handle type="source" position={Position.Bottom}/>
         </div>
     )
 }

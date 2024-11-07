@@ -1,4 +1,4 @@
-import {useCallback, useRef} from 'react';
+import {useCallback} from 'react';
 import {
     addEdge,
     applyNodeChanges,
@@ -13,8 +13,10 @@ import '@xyflow/react/dist/style.css';
 import {ResponseNode} from "@/components/ResponseNode";
 import {QuestionNode} from "@/components/QuestionNode";
 import {ScenarioNode} from "@/components/ScenarioNode";
-import {Button} from "@/components/ui/button";
+import {v4 as uuidv4} from 'uuid';
+import {useDebounce} from "@/hooks/use-debounce";
 
+const getNewId = () => uuidv4()
 const initialNodes = [
     {
         id: 'init',
@@ -24,7 +26,7 @@ const initialNodes = [
             photo: "url",
             description: 'une description denfer',
         },
-        position: {x: 0, y: 50},
+        position: {x: -16, y: -210},
     },
     {
         id: 'a',
@@ -33,7 +35,7 @@ const initialNodes = [
             label: 'Titre de la question',
             description: 'Description de la question',
         },
-        position: {x: 0, y: 50},
+        position: {x: -16, y: 240},
     },
     {
         id: '1',
@@ -41,7 +43,7 @@ const initialNodes = [
         data: {
             label: 'Response n° 1',
         },
-        position: {x: 50, y: 50},
+        position: {x: 279, y: 480},
     },
     {
         id: '2',
@@ -49,7 +51,7 @@ const initialNodes = [
         data: {
             label: 'Response n° 2',
         },
-        position: {x: 50, y: 50},
+        position: {x: -21, y: 480},
     },
     {
         id: '3',
@@ -57,85 +59,102 @@ const initialNodes = [
         data: {
             label: 'Response n° 3',
         },
-        position: {x: 50, y: 50},
+        position: {x: -336, y: 480},
     },
 ];
+const initialEdges = [
+    {id: 'einit-a', source: 'init', target: 'a'},
+    {id: 'ea-1', source: 'a', target: '1'},
+    {id: 'ea-2', source: 'a', target: '2'},
+    {id: 'ea-3', source: 'a', target: '3'},
+]
 
 const nodeTypes = {scenario: ScenarioNode, question: QuestionNode, response: ResponseNode};
 
-let id = 1;
-const getId = () => `${id++}`;
 const nodeOrigin = [0.5, 0];
 
 const Chart = () => {
-    const reactFlowWrapper = useRef(null);
 
     const [nodes, setNodes] = useNodesState(initialNodes);
-    const [edges, setEdges] = useEdgesState([]);
+    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const {screenToFlowPosition} = useReactFlow();
 
+    const handleSaveScenario = (value: any) => {
+        /**
+         * TODO :
+         *  handle save data in server
+         *
+         **/
+        console.log("Saving to database -- ", nodes)
+        console.log("Saving to database -- ", edges)
+    }
+    const debouncedSave = useDebounce(handleSaveScenario, 1000);
 
     const onNodesChange = useCallback(
         (changes) => setNodes((nds) => {
-            console.log("Here ", changes)
-            console.log(nds)
+            console.log("Blabla ", edges)
+            console.log("Blabla ", nodes)
+            debouncedSave()
             return applyNodeChanges(changes, nds)
         }),
-        [],
+        [setNodes],
     );
 
-    const onEdgesChange = useCallback(
-        (changes) => setEdges((edges) => {
-            console.log("onedgesChanges ", changes)
-            console.log(edges)
-        }),
-        []
-    )
 
     const onConnect = useCallback(
         (params) => setEdges((eds) => {
             console.log('onConnect ', params)
             console.log(eds)
-            addEdge(params, eds)
+            return addEdge(params, eds)
         }),
-        [],
+        [setEdges],
     );
 
     const onConnectEnd = useCallback(
         (event, connectionState) => {
-            // when a connection is dropped on the pane it's not valid
             if (!connectionState.isValid) {
-                // we need to remove the wrapper bounds, in order to get the correct position
-                const id = getId();
+                const id = getNewId();
                 const {clientX, clientY} =
                     'changedTouches' in event ? event.changedTouches[0] : event;
-                const newNode = {
+                console.log("in onConectEnd ", event)
+                console.log("in onConectEnd ", connectionState)
+                console.log("in onConectEnd ", id)
+                const nodeTypeFrom = connectionState.fromNode.type
+                let newNode = {
                     id,
                     position: screenToFlowPosition({
                         x: clientX,
                         y: clientY,
                     }),
-                    data: {label: `Node ${id}`},
+                    data: {},
                     origin: [0.5, 0.0],
-                };
+                    type: ""
+                }
+
+                if (nodeTypeFrom === "response") {
+                    newNode.type = "question"
+                }
+                if (nodeTypeFrom === "question") {
+                    newNode.type = "response"
+                }
+                if (nodeTypeFrom === "scenario") {
+                    newNode.type = "question"
+                }
+
 
                 setNodes((nds) => nds.concat(newNode));
-                setEdges((eds) => {
-                    }
-                    //eds.concat({id, source: connectionState.fromNode.id, target: id, xp: -2}),
-                );
+                setEdges((eds) =>
+                    eds.concat({id, source: connectionState.fromNode.id, target: id, xp: -2})
+                )
             }
         },
         [screenToFlowPosition],
     );
-    const test = () => {
-        console.log(edges)
-        console.log(nodes)
-    }
+
 
     return (
         <>
-            <div className="wrapper w-screen h-screen" ref={reactFlowWrapper}>
+            <div className="wrapper w-screen h-screen">
                 <ReactFlow
                     nodes={nodes}
                     edges={edges}
@@ -152,9 +171,7 @@ const Chart = () => {
                     <Background/>
                     <Controls/>
                 </ReactFlow>
-
             </div>
-            <Button onMouseDown={test}></Button>
         </>
     );
 };
