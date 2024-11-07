@@ -9,9 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-<<<<<<< Updated upstream
-        Text("HOME-MAP")
-=======
+
         VStack {
             CustomTextField(text: "", placeholder: "coucou", title: "Hello")
             
@@ -27,7 +25,6 @@ struct HomeView: View {
         .frame(height: .infinity)
         .background(.black)
             
->>>>>>> Stashed changes
     }
 }
 
