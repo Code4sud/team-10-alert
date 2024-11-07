@@ -7,6 +7,7 @@ import { DashboardNodesModule } from './dashboard-nodes/dashboard-nodes.module';
 import { EncryptionModule } from './encryption/encryption.module';
 import { ScenarioModule } from './scenario/scenario.module';
 import { UsersModule } from './users/users.module';
+import { TodosModule } from './todos/todos.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { UsersModule } from './users/users.module';
     EncryptionModule,
     ScenarioModule,
     DashboardNodesModule,
+    TodosModule,
   ],
   controllers: [],
   providers: [],
