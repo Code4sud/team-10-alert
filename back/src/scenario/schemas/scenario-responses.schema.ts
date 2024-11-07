@@ -10,6 +10,9 @@ export class ScenarioResponse {
   description: string;
 
   @Column()
+  scoreDescription: string;
+
+  @Column()
   effectDescription: string;
 
   @Column()

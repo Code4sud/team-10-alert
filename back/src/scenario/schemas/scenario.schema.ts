@@ -1,9 +1,9 @@
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { ScenarioNode } from './scenario-nodes.schema';
 
 @Entity()
 export class Scenario {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -12,7 +12,7 @@ export class Scenario {
   @Column()
   description: string;
 
-  @Column()
+  @Column({ nullable: true })
   imageUrl: string;
 
   @Column()
