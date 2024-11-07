@@ -7,11 +7,14 @@ import {
     useReactFlow, Background, Controls,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
+import NodeCustom from "@/components/NodeCustom";
+
+
 
 const initialNodes = [
     {
         id: '0',
-        type: 'input',
+        type: 'nodeCustom',
         data: {
             label: 'Node',
             description: 'Node description',
@@ -28,6 +31,7 @@ const initialNodes = [
 let id = 1;
 const getId = () => `${id++}`;
 const nodeOrigin = [0.5, 0];
+const nodeTypes = { nodeCustom: NodeCustom};
 
 const Chart = () => {
     const reactFlowWrapper = useRef(null);
@@ -79,7 +83,7 @@ const Chart = () => {
                 fitView
                 fitViewOptions={{padding: 2}}
                 nodeOrigin={nodeOrigin}
-                snapToGrid
+                nodeTypes={nodeTypes}
             >
                 <Background/>
                 <Controls/>

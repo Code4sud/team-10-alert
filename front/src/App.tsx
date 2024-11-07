@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import  DashboardScreen  from "./screens/auth/dashboard.screen";
 import  ScenariosScreen  from "./screens/auth/scenarios.screen";
 import {Outlet} from "react-router-dom";
+import ManageScenarioScreen from "@/screens/auth/managescenario.screen";
 
 
 const MainLayout = () => (
@@ -33,6 +34,9 @@ const authRouter = createBrowserRouter([
             },
             {
                 path: '/scenarios', element: <ScenariosScreen />
+            },
+            {
+                path: '/scenarios/:id', element: <ManageScenarioScreen />
             }
 
         ],
