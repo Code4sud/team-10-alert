@@ -262,7 +262,7 @@ console.log(selectedAlertPower);
                           Date de l'alerte
                         </label>
                         <DatePicker
-                          onChange={(date) => setSelectDateAlert(date?.toLocaleDateString() || null)}
+                          onChange={(date) => setSelectDateAlert(date)}
                         />
                       </div>
                       <label className='block text-sm font-medium mb-2'>
