@@ -1,4 +1,10 @@
-import { useEffect, useState } from 'react';
+import { AzureAxios } from '@/api/axios';
+import DashboardAfter from '@/components/dashboard/After.dashboard';
+import DashboardBefore from '@/components/dashboard/Before.dashboard';
+import DashboardDuring from '@/components/dashboard/During.dashboard';
+import DashboardHistory from '@/components/dashboard/History.dashboard';
+import { Button } from '@/components/ui/button';
+import { DatePicker } from '@/components/ui/datePicker';
 import {
   Dialog,
   DialogContent,
@@ -7,6 +13,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
@@ -16,24 +23,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { IoMdAdd } from 'react-icons/io';
-import { DatePicker } from '@/components/ui/datePicker';
+import { Textarea } from '@/components/ui/textarea';
 import {
   alertes,
   AlertPower,
   alertPowerMapping,
   AlertType,
 } from '@/enums/alert.enum';
+import { useEffect, useState } from 'react';
+import { IoMdAdd } from 'react-icons/io';
 import { TiWarning } from 'react-icons/ti';
-import { Textarea } from '@/components/ui/textarea';
-import { Link } from 'react-router-dom';
-import DashboardHistory from '@/components/dashboard/History.dashboard';
-import DashboardBefore from '@/components/dashboard/Before.dashboard';
-import DashboardDuring from '@/components/dashboard/During.dashboard';
-import DashboardAfter from '@/components/dashboard/After.dashboard';
-import { AzureAxios } from '@/api/axios';
 
 const DashboardScreen = () => {
   const [selectedAlertType, setSelectedAlertType] = useState('');
@@ -168,7 +167,7 @@ console.log(tasks);
 console.log(alertPowers);
 console.log(selectedAlertPower);
   return (
-    <div className='p-8 min-h-screen '>
+    <div className='p-8 min-h-screen flex-grow'>
       {alertLaunched && (
         <p className='bg-black border border-red-600 border-1 text-red-600 px-4 py-2 rounded-md mb-6'>
           Une alerte a été lancée et sera active jusqu'au{' '}
@@ -328,7 +327,7 @@ console.log(selectedAlertPower);
                     <SelectLabel>Dates disponibles</SelectLabel>
                     {availableDates.map((event) => (
                       <SelectItem key={event.date} value={event.date}>
-                        {event.date}
+                        {event.date} - {event.catastrophe}
                       </SelectItem>
                     ))}
                   </SelectGroup>

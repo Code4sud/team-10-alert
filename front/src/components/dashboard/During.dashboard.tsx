@@ -9,4 +9,4 @@ const DashboardDuring = () => {
   );
 };
 
-export default DashboardDuring;
+export default DashboardDuring
