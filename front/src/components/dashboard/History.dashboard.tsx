@@ -11,6 +11,12 @@ export const description = 'Un graphique à barres multiples pour les alertes';
 const DashboardHistory = () => {
   return (
     <div className='text-white'>
+      <h2>Dashboard History</h2>
+      <p>
+        Cette page permet de voir l'historique des alertes. Vous pouvez
+        visualiser la fréquence des différents types d'alertes au fil des
+        années.
+      </p>
       <div className='grid grid-cols-12 gap-4'>
         <div className='col-span-7'>
           <MultiBarChart />
