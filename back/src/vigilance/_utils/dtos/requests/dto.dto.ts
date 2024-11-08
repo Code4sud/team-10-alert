@@ -1,12 +1,15 @@
 import { IsBoolean, IsDate, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateVigilanceDto {
+  @IsNotEmpty()
   @IsString()
   alertType: string;
 
+  @IsNotEmpty()
   @IsString()
   vigilanceType: string;
 
+  @IsNotEmpty()
   @IsDate()
   alertStartDate: Date;
 }
