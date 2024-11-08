@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftUI
+import Alamofire
+
 
 class GameViewModel: ObservableObject {
     
