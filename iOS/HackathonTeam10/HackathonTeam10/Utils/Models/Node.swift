@@ -6,7 +6,7 @@
 //
 import Foundation
 
-struct Node: Codable {
+struct Node: Decodable {
     let id: String
     let description: String
     let responses: [Response]

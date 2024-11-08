@@ -29,9 +29,8 @@ struct GameView: View {
         .onAppear {
             viewModel.loadScenario()
         }
+        .fullScreenCover(isPresented: $viewModel.isEndNode) {
+            EndScenarioView{}
+        }
     }
-}
-
-#Preview {
-    GameView()
 }

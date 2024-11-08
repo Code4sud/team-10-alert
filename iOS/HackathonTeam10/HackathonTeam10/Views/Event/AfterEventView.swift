@@ -53,7 +53,7 @@ struct AfterEventView: View {
                 .cornerRadius(100)
             }
                         
-            Text(viewModel.selectedResponse?.score ?? "")
+            Text(viewModel.selectedResponse?.scoreDescription ?? "")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(Color(.secondary))
@@ -61,13 +61,13 @@ struct AfterEventView: View {
                 .padding(.top, 20)
             
          
-            Text("\(viewModel.selectedResponse?.healthEffect ?? 0) Points de vie")
+            Text("\(viewModel.selectedResponse?.healthPointsImpact ?? 0) Points de vie")
                     .foregroundColor(Color(.health))
                     .font(.system(size: 16, weight: .bold))
                     .opacity(showHealthPoints ? 1 : 0)
                     .animation(.easeInOut(duration: 1), value: showHealthPoints)
             
-                Text("\(viewModel.selectedResponse?.wiseEffect ?? 0) Points de sagesse")
+                Text("\(viewModel.selectedResponse?.wisePointsImpact ?? 0) Points de sagesse")
                     .foregroundColor(Color(.wisdom))
                     .font(.system(size: 16, weight: .bold))
                     .opacity(showWisdomPoints ? 1 : 0)
