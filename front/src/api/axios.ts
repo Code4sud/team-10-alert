@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {useUserStore} from '../store/users/user.store';
+import {useUserStore} from '@/store/users/user.store';
 
 export const AzureAxios = axios.create({
     // baseURL: 'https://www.azure-escape.local/api/v1/',

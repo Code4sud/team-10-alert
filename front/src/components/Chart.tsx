@@ -1,4 +1,4 @@
-import {useCallback} from 'react';
+import {useCallback, useEffect} from 'react';
 import {
     addEdge,
     applyNodeChanges,
@@ -16,6 +16,8 @@ import {ScenarioNode} from "@/components/ScenarioNode";
 import {v4 as uuidv4} from 'uuid';
 import {useDebounce} from "@/hooks/use-debounce";
 import {scenarioRequests} from "@/store/dashboard-nodes/dashboard-nodes.request";
+import {useParams} from "react-router-dom";
+import {type Edge, type Node,} from '@xyflow/react';
 
 const getNewId = () => uuidv4()
 const initialNodes = [
@@ -23,18 +25,14 @@ const initialNodes = [
         id: 'init',
         type: 'scenario',
         data: {
-            title: 'Scneario n° 1 : ile de l enfer ',
-            photo: "url",
-            description: 'une description denfer',
+            title: 'Untitled',
         },
         position: {x: -16, y: -210},
     },
     {
         id: 'a',
         type: 'question',
-        data: {
-            description: 'Description de la question',
-        },
+        data: {},
         position: {x: -16, y: 240},
     },
     {
@@ -46,17 +44,13 @@ const initialNodes = [
     {
         id: '2',
         type: 'response',
-        data: {
-            label: 'Response n° 2',
-        },
+        data: {},
         position: {x: -21, y: 480},
     },
     {
         id: '3',
         type: 'response',
-        data: {
-            label: 'Response n° 3',
-        },
+        data: {},
         position: {x: -336, y: 480},
     },
 ];
@@ -71,18 +65,29 @@ const nodeTypes = {scenario: ScenarioNode, question: QuestionNode, response: Res
 
 const nodeOrigin: [number, number] = [0.5, 0];
 
+
 const Chart = () => {
 
-    const [nodes, setNodes] = useNodesState(initialNodes);
+    const [nodes, setNodes] = useNodesState<Node>(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const reactFlowInstance = useReactFlow();
+    const { id, isCreate } = useParams<{ id: string, isCreate: string }>()
+
+    useEffect(() => {
+        if(id && isCreate === "false") {
+            scenarioRequests.getScenario(id).then((scenario) => {
+                setNodes(scenario.data.nodes)
+                setEdges(scenario.data.edges)
+            })
+        }
+    }, []);
+
 
     const handleSaveScenario = async (value: any) => {
-        return scenarioRequests.createOrUpdateScenario('50bd4909-2cee-4a05-83f0-e3aa0fa3c32e',
-            {
-                nodes: reactFlowInstance.getNodes(),
-                edges: reactFlowInstance.getEdges()
-            })
+        return scenarioRequests.createOrUpdateScenario({
+            nodes: reactFlowInstance.getNodes(),
+            edges: reactFlowInstance.getEdges()
+        }, id)
     }
     const debouncedSave = useDebounce(handleSaveScenario, 1000);
 
@@ -155,8 +160,7 @@ const Chart = () => {
 
 
     return (
-        <>
-            <div className="wrapper w-screen h-screen">
+            <div className="wrapper w-full h-full bg-[#203D4E] rounded-xl">
                 <ReactFlow
                     nodes={nodes}
                     edges={edges}
@@ -174,7 +178,6 @@ const Chart = () => {
                     <Controls/>
                 </ReactFlow>
             </div>
-        </>
     );
 };
 

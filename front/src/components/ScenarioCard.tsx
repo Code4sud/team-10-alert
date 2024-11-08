@@ -1,14 +1,20 @@
 import React from 'react'
 import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {Button} from "@/components/ui/button";
+import {GetScenarioLightDto} from "@/store/dashboard-nodes/dashboard-nodes.model";
 
-const ScenarioCard = () => {
+interface ScenarioCardProps {
+	scenario?: GetScenarioLightDto
+	handleClick?: () => void
+}
+
+const ScenarioCard = ({scenario, handleClick}: ScenarioCardProps) => {
 	return (
-		<Card className='w-72 h-96 bg-[#203D4E] border-none text-white flex flex-col'>
-			<img src='src/assets/img-scenario.png' alt='logo' className='w-full h-36 object-cover rounded-t-xl' />
+		<Card className='w-72 h-96 bg-[#203D4E] border-none text-white flex flex-col' onMouseDown={handleClick}>
+			<img src={scenario?.imageUrl?.length ? scenario?.imageUrl : 'src/assets/logo.png'} alt='logo' className='w-full h-36 object-cover rounded-t-xl'/>
 			<CardContent>
-				<CardTitle className='py-4 text-2xl'>Titre de scénario</CardTitle>
-				<p>Please add your content here. Keep it short and simple. And smile :) </p>
+				<CardTitle className='py-4 text-2xl'>{scenario?.name ?? ''}</CardTitle>
+				<p>{scenario?.description ?? ''}</p>
 			</CardContent>
 			<div className='flex-grow'></div>
 			<CardFooter className='align-bottom'>
