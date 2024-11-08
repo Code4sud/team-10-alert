@@ -1,6 +1,16 @@
+import { IsBoolean, IsDate, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+
 export class CreateVigilanceDto {
+  @IsNotEmpty()
+  @IsString()
   alertType: string;
+
+  @IsNotEmpty()
+  @IsString()
   vigilanceType: string;
+
+  @IsNotEmpty()
+  @IsDate()
   alertStartDate: Date;
 }
 
@@ -11,6 +21,8 @@ export class UpdateVigilanceDto {
 }
 
 export class CreateVigilanceTodoDto {
+  @IsNotEmpty()
+  @IsString()
   task: string;
 }
 
@@ -19,11 +31,20 @@ export class UpdateVigilanceTodoDto {
 }
 
 export class CreateUserVigilanceTodoDto {
+  @IsNotEmpty()
+  @IsString()
   userId: string;
+  @IsNotEmpty()
+  @IsString()
   vigilanceId: string;
+  @IsNotEmpty()
+  @IsString()
   vigilanceTodoId: string;
+  @IsBoolean()
   isChecked: boolean;
-  completionDate?: Date;
+  @IsOptional()
+  @IsDate()
+  completionDate?: Date | null;
 }
 
 export class UpdateUserVigilanceTodoDto {

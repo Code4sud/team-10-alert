@@ -1,18 +1,16 @@
-import {useCallback} from 'react';
 import {Handle, Position, useReactFlow} from '@xyflow/react';
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Textarea} from "@/components/ui/textarea";
-
-const handleStyle = {left: 10};
+import {Label} from "@/components/ui/label";
+import {Input} from "@/components/ui/input";
 
 type QuestionProps = {
-    description: string
+    description: string,
+    photoUrl: string
 }
 
 export function QuestionNode({data, id, isConnectable}: { data: QuestionProps, id: any, isConnectable: any }) {
-    const onChange = useCallback((evt: any) => {
-        console.log(evt.target.value);
-    }, []);
+
     const {updateNodeData} = useReactFlow();
     return (
         <div>
@@ -25,16 +23,27 @@ export function QuestionNode({data, id, isConnectable}: { data: QuestionProps, i
                 <CardHeader>
                     <CardTitle>Question</CardTitle>
                 </CardHeader>
-                <CardContent>
-                    <Textarea
-                        className="bg-slate-900 border-none min-h-[100px] nodrag"
-                        placeholder="Saisissez votre question ..."
-                        onChange={(evt) => updateNodeData(id, {description: evt.target.value})}
-                        value={data.description}
-                    />
-                </CardContent>
+              <CardContent>
+                <Textarea
+                  className="bg-slate-900 border-none min-h-[100px] nodrag"
+                  placeholder="Saisissez votre question ..."
+                  onChange={(evt) => {
+                    console.log(evt.target.value)
+                    updateNodeData(id, {description: evt.target.value})
+                  }}
+                  value={data.description}
+                />
+
+                  <Input
+                    id="photo"
+                    className="bg-slate-900 border-none nodrag mt-4"
+                    placeholder="URL Photo"
+                    onChange={(evt) => updateNodeData(id, {photo: evt.target.value})}
+                    value={data.photoUrl}
+                  />
+              </CardContent>
             </Card>
-            <Handle type="source" position={Position.Bottom}/>
+          <Handle type="source" position={Position.Bottom}/>
         </div>
     )
 }

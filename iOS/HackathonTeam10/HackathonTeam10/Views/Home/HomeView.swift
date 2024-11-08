@@ -9,6 +9,11 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        Text("Hello")
+        Text("yo")
+      //  ScenarioDetailView()
     }
+}
+
+#Preview() {
+    HomeView()
 }
