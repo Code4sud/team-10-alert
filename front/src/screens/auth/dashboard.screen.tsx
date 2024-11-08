@@ -109,8 +109,6 @@ console.log(tasks);
       return [];
     }
   };
-  
-  
 
   const handleLaunchAlert = async () => {
     try {
