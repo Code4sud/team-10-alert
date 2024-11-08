@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import Alamofire
 
 struct GameView: View {
     @StateObject private var viewModel = GameViewModel()

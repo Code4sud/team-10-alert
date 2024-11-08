@@ -7,7 +7,26 @@
 
 import SwiftUI
 
+
+struct Alert : View {
+    
+    @StateObject private var viewModel = AlertViewModel()
+    
+    var body: some View {
+        switch viewModel.currentPage {
+        case .alert:
+            AlertView(viewModel: viewModel)
+        case .todo:
+            TodoView(viewModel: viewModel)
+        }
+    }
+}
+
+
 struct AlertView: View {
+    
+    @StateObject var viewModel : AlertViewModel
+
     var body: some View {
         ZStack {
             VStack {
@@ -26,7 +45,7 @@ struct AlertView: View {
                         .foregroundColor(.white)
                         .font(.system(size:24, weight: .regular))
                     CustomButton(text: "Liste d'actions") {
-                        
+                        viewModel.currentPage = .todo
                     }
                     .padding(.bottom)
                         
@@ -49,5 +68,6 @@ struct AlertView: View {
 }
 
 #Preview {
-    AlertView()
+    @Previewable @StateObject var viewModel = AlertViewModel()
+    AlertView(viewModel: viewModel)
 }

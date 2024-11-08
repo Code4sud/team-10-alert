@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct TodoView: View {
+    
+    @StateObject var viewModel : AlertViewModel
+
     var body: some View {
         ZStack {
             VStack {
@@ -76,5 +79,5 @@ struct ChecklistView: View {
 
 
 #Preview {
-    TodoView()
+    //TodoView()
 }

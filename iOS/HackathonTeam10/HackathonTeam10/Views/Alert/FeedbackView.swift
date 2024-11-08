@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct FeedbackView: View {
+    
+    @StateObject var viewModel : AlertViewModel
+
     @State private var feedbackText: String = ""
     
     var body: some View {
@@ -56,10 +59,8 @@ struct FeedbackView: View {
 }
 
 #Preview {
-    FeedbackView()
+    //FeedbackView()
 }
-
-
 
 struct ClearBackgroundTextEditor: UIViewRepresentable {
     @Binding var text: String
