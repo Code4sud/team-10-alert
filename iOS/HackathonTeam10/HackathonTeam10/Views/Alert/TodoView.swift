@@ -10,39 +10,7 @@ import SwiftUI
 struct TodoView: View {
     
     @StateObject var viewModel : AlertViewModel
-
-    var body: some View {
-        ZStack {
-            VStack {
-                VStack(alignment: .center, spacing: 20){
-                    Text("Plan d'action en cas d'inondation")
-                        .font(.title2)
-                        .fontWeight(.heavy)
-                        .foregroundColor(Color(.white))
-                        .multilineTextAlignment(.center)
-                    
-                    .padding(.bottom)
-                    ChecklistView()
-                }
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(Color(.primary))
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.white, lineWidth: 1)
-                )
-            }
-            
-            .padding()
-        }
-        .shadow( color: Color(.secondary).opacity(0.4), radius: 12)
-        
-    }
-}
-
-struct ChecklistView: View {
+    
     @State private var tasks = [
         "Vérifier l'alerte",
         "Informer tes proches",
@@ -54,26 +22,69 @@ struct ChecklistView: View {
     ]
     
     @State private var isChecked = Array(repeating: false, count: 7)
+
+
+    var onClose: () -> Void
+
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 15) {
+        ZStack {
             
-            ForEach(tasks.indices, id: \.self) { index in
-                HStack {
-                    Button(action: {
-                        isChecked[index].toggle()
-                    }) {
-                        Image(systemName: isChecked[index] ? "checkmark.square.fill" : "square")
-                            .foregroundColor(isChecked[index] ? .time : .white)
-                    }
-                    Text(tasks[index])
-                        .font(.body)
+            Color.red.opacity(0.5)
+                .frame(height: UIScreen.main.bounds.height * 1.1)
+                .clipped()
+                .blur(radius: 12)
+            
+            VStack {
+                
+                VStack(alignment: .center, spacing: 20){
+                    Text("Plan d'action en cas d'inondation")
+                        .font(.title2)
+                        .fontWeight(.heavy)
                         .foregroundColor(Color(.white))
+                        .multilineTextAlignment(.center)
+                    
+                    .padding(.bottom)
+                    
+                    VStack(alignment: .leading, spacing: 15) {
+                        
+                        ForEach(tasks.indices, id: \.self) { index in
+                            HStack {
+                                Button(action: {
+                                    isChecked[index].toggle()
+                                }) {
+                                    
+                                    HStack {
+                                        Image(systemName: isChecked[index] ? "checkmark.square.fill" : "square")
+                                            .foregroundColor(isChecked[index] ? .time : .white)
+                                        Text(tasks[index])
+                                            .font(.body)
+                                            .foregroundColor(Color(.white))
+                                    }
+                                }
+                            }
+                        }
+                    }.padding()
+                    
+                    CustomButton(text: "Je suis en sécurité") {
+                        if isChecked.allSatisfy({ $0 }) {
+                            onClose()
+                        }
+                    }
                 }
-            }
-
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(.primary))
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.white, lineWidth: 1)
+                )
+            }.padding()
         }
-        .padding()
+        .shadow( color: Color(.secondary).opacity(0.4), radius: 12)
+        
     }
 }
 

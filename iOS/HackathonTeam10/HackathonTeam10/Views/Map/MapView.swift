@@ -11,6 +11,9 @@ struct MapView: View {
     
     @State private var showModale = false
 
+    @State private var isShowingAlert = false
+    @State private var isShowingFeedback = false
+
     
     // Tableau des positions pour chaque map_pin
     let pinPositions: [CGPoint] = [
@@ -41,14 +44,7 @@ struct MapView: View {
             
             
             VStack {
-                HStack {
-                    Spacer()
-                    Image("avatar_face")
-                        .padding(.trailing,10)
-                }
-
                 Spacer()
-                
                 
                 Text("Choisissez un scénario d'alerte\net commencez l'aventure!")
                     .multilineTextAlignment(.center)
@@ -68,13 +64,59 @@ struct MapView: View {
 
             }
             
+            VStack {
+                HStack {
+                    Button(action: {
+                        isShowingAlert.toggle()
+                    }) {
+                        Image(systemName: "exclamationmark.triangle")
+                            .foregroundColor(.red)
+                            .padding(10)
+                            .background(Color.black.opacity(0.7))
+                            .clipShape(Circle())
+                    }
+                    .padding(.trailing, 10)
+                    
+                    Button(action: {
+                        isShowingFeedback.toggle()
+                    }) {
+                        Image(systemName: "ellipsis.message")
+                            .foregroundColor(.yellow)
+                            .padding(10)
+                            .background(Color.black.opacity(0.7))
+                            .clipShape(Circle())
+                    }
+                    .padding(.trailing, 10)
+                    Spacer()
+                    
+                    Image("avatar_face")
+                        .padding(.trailing,10)
+                    
+                }.padding(.top, 15).padding(.leading, 20)
+                Spacer()
+            }
+
+            
             if(showModale) {
                 ScenarioDetailView {
                     showModale.toggle()
                 }
             }
+            
+            if isShowingAlert {
+                Alert {
+                    isShowingAlert.toggle()
+                }
+            }
+            
+            if isShowingFeedback {
+                FeedbackView {
+                    isShowingFeedback.toggle()
+                }
+            }
 
-        }
+
+        }.navigationBarBackButtonHidden(true)
     }
 }
 

@@ -9,12 +9,19 @@ import SwiftUI
 
 struct FeedbackView: View {
     
-    @StateObject var viewModel : AlertViewModel
-
     @State private var feedbackText: String = ""
+    
+    var onClose: () -> Void
     
     var body: some View {
         ZStack {
+            
+            Color.white.opacity(0.5)
+                .frame(height: UIScreen.main.bounds.height * 1.1)
+                .clipped()
+                .blur(radius: 12)
+
+            
             VStack {
                 VStack(alignment: .center, spacing: 20) {
                     Text("Retour d'expérience")
@@ -24,12 +31,12 @@ struct FeedbackView: View {
                         .multilineTextAlignment(.center)
                         .padding(.bottom)
                     
-                    Text("Hey ! J'espère que tu vas bien. On voulait prendre de tes nouvelles après ce qui s'est passé. Comment tu te sens aujourd'hui ?")
+                    Text("Hey ! J'espère que tu vas bien. On voulait prendre de tes nouvelles après l'inondation de mercredi 20 septembre à Nice. Comment tu te sens aujourd'hui ?")
                         .foregroundColor(.white)
                         .font(.system(size: 14, weight: .regular))
                     
                     ZStack {
-                        ClearBackgroundTextEditor(text: $feedbackText, placeholder: "Saisissez votre avis")
+                        ClearBackgroundTextEditor(text: $feedbackText, placeholder: "Dis-nous comment tu as pu faire face à l'inondation et de comment tu sens aujourd'hui")
                             .frame(height: 250)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
@@ -38,7 +45,7 @@ struct FeedbackView: View {
                     }
                     
                     CustomButton(text: "Envoyer") {
-                        
+                        onClose()
                     }
                     .padding(.bottom)
                 }

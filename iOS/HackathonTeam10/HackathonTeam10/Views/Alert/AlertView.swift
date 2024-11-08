@@ -11,13 +11,16 @@ import SwiftUI
 struct Alert : View {
     
     @StateObject private var viewModel = AlertViewModel()
-    
+    var onClose: () -> Void
+
     var body: some View {
         switch viewModel.currentPage {
         case .alert:
             AlertView(viewModel: viewModel)
         case .todo:
-            TodoView(viewModel: viewModel)
+            TodoView(viewModel: viewModel){
+                onClose()
+            }
         }
     }
 }
@@ -29,6 +32,12 @@ struct AlertView: View {
 
     var body: some View {
         ZStack {
+            Color.red.opacity(0.5)
+                .frame(height: UIScreen.main.bounds.height * 1.1)
+                .clipped()
+                .blur(radius: 12)
+
+            
             VStack {
                 VStack(alignment: .center,spacing: 20){
                     Text("Alerte Danger !")
@@ -69,5 +78,5 @@ struct AlertView: View {
 
 #Preview {
     @Previewable @StateObject var viewModel = AlertViewModel()
-    AlertView(viewModel: viewModel)
+    Alert(){}
 }

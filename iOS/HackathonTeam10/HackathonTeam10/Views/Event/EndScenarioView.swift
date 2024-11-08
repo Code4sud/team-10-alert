@@ -14,6 +14,16 @@ struct EndScenarioView: View {
     var body: some View {
         NavigationStack {
             ZStack {
+                
+                Image("background")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(height: UIScreen.main.bounds.height * 1.1)
+                    .clipped()
+                    .blur(radius: 12)
+                    
+
+                
                 VStack {
                     VStack(spacing: 20){
                         Text("Félicitations")
@@ -52,16 +62,18 @@ struct EndScenarioView: View {
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(Color.white, lineWidth: 1)
                     )
-                }
+                }.padding(.horizontal, 30)
                 .padding()
             }
             .shadow( color: Color(.secondary).opacity(0.4), radius: 12)
-            
+            .padding(.horizontal, 30)
         }
     }
 }
 
-//#Preview {
-//    EndScenarioView()
-//}
+#Preview {
+    EndScenarioView(){
+        
+    }
+}
 
