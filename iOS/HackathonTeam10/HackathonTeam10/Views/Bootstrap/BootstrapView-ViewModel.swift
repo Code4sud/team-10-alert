@@ -18,7 +18,7 @@ extension BootstrapView {
         
         private func fetchData() {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.userState.authState = .authenticated
+                self.userState.authState = .unauthenticated
             }
         }
     }
