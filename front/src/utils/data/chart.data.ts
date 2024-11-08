@@ -118,12 +118,7 @@ export const emergencyListDuring = [
 ];
 
 export const emergencyListAfter = [
-  "  Vérifier l'intégrité des bâtiments : rechercher des signes de fuites, d'infiltrations d'eau ou de dommages structurels.",
-  "Vérifier les risques d'érosion et de glissements de terrain.",
-  'Écouter les consignes de sécurité sur les conditions de circulation et les zones de danger.',
-  'Documenter les dommages pour les assurances si nécessaire.',
-  'Récupérer les objets endommagés ou déplacés par les eaux.',
-  'Inspecter les dommages sur les toitures, fenêtres, véhicules et autres structures extérieures.',
-  'Ramasser les débris laissés par la grêle, comme les morceaux de verre ou les branches cassées.',
-  "Évaluer les risques d'inondation dus aux canalisations obstruées.",
+  "Question 1 : Hey ! J'espère que tu vas bien. On voulait prendre de tes nouvelles après ce qui s'est passé. Comment tu te sens aujourd'hui ?",
+  "Question 2 : Est-ce qu'il y a des moments où tu repenses à ce qui s'est passé ? Tu veux en parler ?",
+  'Question 3 : Sur une échelle de 1 à 5 (1 = pas bien du tout, 5 = très bien), comment tu te sens quand tu y repenses ?',
 ];
