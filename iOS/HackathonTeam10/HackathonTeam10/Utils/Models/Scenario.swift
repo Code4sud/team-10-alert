@@ -8,8 +8,11 @@
 import Foundation
 
 
-struct Scenario: Codable {
-    let scenarioId: String
-    let initialNode: Node
-    let nodes: [Node]
+struct Scenario: Decodable {
+    let id: String
+    let name: String
+    let description: String
+    let imageUrl: String
+    let scenarioNodes: ScenarioNodes
+    let initialScenarioNodeId: String?
 }

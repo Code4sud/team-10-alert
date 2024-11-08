@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct GameView: View {
     @StateObject private var viewModel = GameViewModel()
@@ -14,7 +15,7 @@ struct GameView: View {
         Group {
             if viewModel.isAfterEvent {
                 ZStack {
-                    Color(.primary)
+                    Color("aftereventbg")
                         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                     
                     AfterEventView(viewModel: viewModel)
@@ -28,9 +29,8 @@ struct GameView: View {
         .onAppear {
             viewModel.loadScenario()
         }
+        .fullScreenCover(isPresented: $viewModel.isEndNode) {
+            EndScenarioView{}
+        }
     }
-}
-
-#Preview {
-    GameView()
 }

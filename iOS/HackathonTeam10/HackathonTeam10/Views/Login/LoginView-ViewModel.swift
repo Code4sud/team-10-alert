@@ -27,6 +27,5 @@ class LoginViewModel: ObservableObject {
          print("tapped choose character")
     }
 
-
     
 }

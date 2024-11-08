@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct QuitScenarioView: View {
+    
+    var onQuit: () -> Void
+    var onClose: () -> Void
+
     var body: some View {
         ZStack {
             VStack {
@@ -32,7 +36,7 @@ struct QuitScenarioView: View {
                     HStack(spacing: 10){
                         Spacer()
                         Button(action: {
-
+                            onQuit() 
                         }) {
                             Text("Quitter")
                                 .font(.system(size: 16, weight: .bold))
@@ -50,7 +54,7 @@ struct QuitScenarioView: View {
                         }
                         Spacer()
                         CustomButton(text: "Continuer") {
-                            
+                            onClose()
                         }
                         Spacer()
                     }
@@ -74,7 +78,7 @@ struct QuitScenarioView: View {
 }
 
 #Preview {
-    QuitScenarioView()
+    QuitScenarioView(onQuit: {}, onClose: {})
 }
 
 

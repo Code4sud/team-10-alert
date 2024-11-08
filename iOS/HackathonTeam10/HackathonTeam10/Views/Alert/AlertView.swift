@@ -7,9 +7,37 @@
 
 import SwiftUI
 
+
+struct Alert : View {
+    
+    @StateObject private var viewModel = AlertViewModel()
+    var onClose: () -> Void
+
+    var body: some View {
+        switch viewModel.currentPage {
+        case .alert:
+            AlertView(viewModel: viewModel)
+        case .todo:
+            TodoView(viewModel: viewModel){
+                onClose()
+            }
+        }
+    }
+}
+
+
 struct AlertView: View {
+    
+    @StateObject var viewModel : AlertViewModel
+
     var body: some View {
         ZStack {
+            Color.red.opacity(0.5)
+                .frame(height: UIScreen.main.bounds.height * 1.1)
+                .clipped()
+                .blur(radius: 12)
+
+            
             VStack {
                 VStack(alignment: .center,spacing: 20){
                     Text("Alerte Danger !")
@@ -26,7 +54,7 @@ struct AlertView: View {
                         .foregroundColor(.white)
                         .font(.system(size:24, weight: .regular))
                     CustomButton(text: "Liste d'actions") {
-                        
+                        viewModel.currentPage = .todo
                     }
                     .padding(.bottom)
                         
@@ -49,5 +77,6 @@ struct AlertView: View {
 }
 
 #Preview {
-    AlertView()
+    @Previewable @StateObject var viewModel = AlertViewModel()
+    Alert(){}
 }
