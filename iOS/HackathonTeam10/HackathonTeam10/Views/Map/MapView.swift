@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct MapView: View {
+    
+    @State private var showModale = false
+
+    
     // Tableau des positions pour chaque map_pin
     let pinPositions: [CGPoint] = [
         CGPoint(x: 80, y: 160),
@@ -31,7 +35,7 @@ struct MapView: View {
                     .position(x: pinPositions[index].x, y: pinPositions[index].y)
                     .onTapGesture {
                         print("map pin click")
-                        // TODO: start scenario
+                        showModale.toggle()
                     }
             }
             
@@ -61,26 +65,13 @@ struct MapView: View {
                         )
                         .shadow( color: Color(.secondary), radius: 12)
                         .padding(.bottom, 90)
-                /*
 
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.primary)
-                    .shadow( color: Color(.secondary), radius: 12)
-                    .overlay(
-                        VStack {
-                            Text("Choisissez un scénario d'alerte\net commencez l'aventure!")
-                                .foregroundColor(.white)
-                                .multilineTextAlignment(.center)
-                        }
-                        .frame(maxWidth: 300, maxHeight: 75)
-                        .background(Color("video_bg"))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.white, lineWidth: 1)
-                        )
-                    )
-                    .padding(.bottom, 90) // Ajuste l'espacement du bas
-                 */
+            }
+            
+            if(showModale) {
+                ScenarioDetailView {
+                    showModale.toggle()
+                }
             }
 
         }

@@ -10,9 +10,10 @@ import AVKit
 import Combine
 
 struct ChooseCharacterView: View {
-    @State private var viewModel = ViewModel()
-    @State private var selectedIndex = 0
     
+    @StateObject var viewModel : LoginViewModel
+
+    @State private var selectedIndex = 0
     
     var body: some View {
 
@@ -52,6 +53,7 @@ struct ChooseCharacterView: View {
                     .frame(height: 32)
                 HStack {
                     CustomButton(text: "Valider") {
+                        viewModel.currentPage = .map
                         viewModel.chooseCharacter()
                     }
                     .frame(width: 160)
@@ -73,7 +75,7 @@ struct ChooseCharacterView: View {
 
 
 #Preview {
-    ChooseCharacterView()
+    // ChooseCharacterView()
 }
 
 

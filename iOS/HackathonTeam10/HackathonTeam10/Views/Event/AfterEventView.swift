@@ -127,7 +127,7 @@ struct AfterEventView: View {
         }
         .padding()
         .ignoresSafeArea()
-        .background(Color.black.edgesIgnoringSafeArea(.all))
+        .background(Color(.primary).edgesIgnoringSafeArea(.all))
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 withAnimation {

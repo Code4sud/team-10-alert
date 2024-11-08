@@ -20,7 +20,7 @@ struct BackgroundView: View {
             
             
             Color.black.opacity(0.5)
-                .frame(width: .infinity, height: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
 
     }

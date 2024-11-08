@@ -15,14 +15,11 @@ struct BootstrapView: View {
         Group {
             switch vm.userState.authState {
             case .authenticated:
-                //HomeView()
-                GameView()
+                MapView()
             case .unauthenticated:
                 LoginView()
             case .splash:
-                //SplashView()
-               //  HomeView()
-                GameView()
+                SplashView()
             }
         }
         //.glassBackgroundEffect()

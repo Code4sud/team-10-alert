@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct CreateProfileView: View {
-    @State private var viewModel = ViewModel()
+    
+    @StateObject var viewModel : LoginViewModel
+
     var body: some View {
         ZStack {
             BackgroundView()
@@ -59,6 +61,7 @@ struct CreateProfileView: View {
                 )
                 Spacer().frame(height: 38)
                 CustomButton(text: "Continuer"){
+                    viewModel.currentPage = .chooseChar
                     viewModel.createProfileAndNavToHome()
                 }
             }.padding(.horizontal, 60)
@@ -67,5 +70,5 @@ struct CreateProfileView: View {
 }
 
 #Preview {
-    CreateProfileView()
+   //  CreateProfileView()
 }
