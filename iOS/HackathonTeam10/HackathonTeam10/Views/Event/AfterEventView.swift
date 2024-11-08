@@ -83,7 +83,7 @@ struct AfterEventView: View {
                         Image("Avatar2")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 151, height: 370)
+                            .frame(width: 170, height: 400)
                         //                AsyncImage(url : URL(string:"https://picsum.photos/200/300")){image in image.resizable()
                         //                        .aspectRatio(contentMode: .fit)
                         //                        } placeholder: {
@@ -102,6 +102,8 @@ struct AfterEventView: View {
                             .background(
                                 RoundedRectangle(cornerRadius: 12)
                                     .fill(Color(.primary))
+                                    .shadow( color: Color(.secondary), radius: 12)
+
                             )
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
@@ -110,11 +112,12 @@ struct AfterEventView: View {
                     }
                     .frame(width: .infinity, height: 400)
                     .padding(.horizontal)
+                    .padding(.top)
                     
                     HStack {
                         Button("Retour\nCarte"){
                             isShowingQuit = true
-                        }.font(.system(size: 16, weight: .bold))
+                        }.font(.system(size: 12))
                             .foregroundStyle(.white)
                         
                         Spacer()
@@ -129,7 +132,7 @@ struct AfterEventView: View {
                 }
                 .padding()
                 .ignoresSafeArea()
-                .background(Color(.primary).edgesIgnoringSafeArea(.all))
+                .background(Color("aftereventbg").edgesIgnoringSafeArea(.all))
                 .onAppear {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                         withAnimation {

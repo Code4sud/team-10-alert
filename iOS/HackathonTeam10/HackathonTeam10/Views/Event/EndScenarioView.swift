@@ -32,7 +32,7 @@ struct EndScenarioView: View {
                             .foregroundColor(Color(.secondary))
                             .shadow( color: Color(.secondary).opacity(0.9), radius: 12)
                             .padding(.top, 20)
-                        Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim v")
+                        Text("Tu as terminé le scénario Alerte innondation au lycée Massena. Tu t'en es très bien sorti !")
                             .foregroundColor(.white)
                             .font(.system(size:12, weight: .regular))
                         

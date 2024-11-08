@@ -15,7 +15,7 @@ struct GameView: View {
         Group {
             if viewModel.isAfterEvent {
                 ZStack {
-                    Color(.primary)
+                    Color("aftereventbg")
                         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                     
                     AfterEventView(viewModel: viewModel)
