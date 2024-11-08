@@ -33,6 +33,7 @@ import DashboardHistory from '@/components/dashboard/History.dashboard';
 import DashboardBefore from '@/components/dashboard/Before.dashboard';
 import DashboardDuring from '@/components/dashboard/During.dashboard';
 import DashboardAfter from '@/components/dashboard/After.dashboard';
+import { AzureAxios } from '@/api/axios';
 
 const DashboardScreen = () => {
   const [selectedAlertType, setSelectedAlertType] = useState('');
@@ -44,6 +45,7 @@ const DashboardScreen = () => {
   const [isDateDialogOpen, setIsDateDialogOpen] = useState(false);
   const [alertLaunched, setAlertLaunched] = useState(false);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [selectDateAlert, setSelectDateAlert] = useState<string | null>(null);
   const [dashboardPeriod, setDashboardPeriod] = useState<string>('');
   const availableDates = [
     { date: '12/09/2024', catastrophe: 'Inondation massive' },
@@ -97,13 +99,58 @@ const DashboardScreen = () => {
         return <DashboardHistory />;
     }
   };
+console.log(tasks);
+  const fetchUsers = async () => {
+    try {
+      const response = await AzureAxios.get('/users');
+      return response.data;
+    } catch (error) {
+      console.error('Erreur lors de la récupération des utilisateurs:', error);
+      return [];
+    }
+  };
+  
+  
 
-  const handleLaunchAlert = () => {
-    if (selectedDate) {
-      setIsDialogOpen(false);
+  const handleLaunchAlert = async () => {
+    try {
+      // Créer la vigilance
+      const vigilanceResponse = await AzureAxios.post('/vigilance/create-vigilance', {
+        alertType: selectedAlertType,
+        vigilanceType: selectedAlertPower,
+        alertStartDate: selectDateAlert,
+      });
+      
+      const vigilanceId = vigilanceResponse.data.id;
+      const users = await fetchUsers();
+  
+      // Créer les tâches de vigilance
+      for (const task of tasks) {
+        if (task.trim()) {
+          const vigilanceTodoResponse = await AzureAxios.post('/vigilance/create-vigilance-todo', {
+            task: task,
+          });
+          
+          const vigilanceTodoId = vigilanceTodoResponse.data.id;
+  
+          // Créer une entrée UserVigilanceTodo pour chaque utilisateur
+          for (const user of users) {
+            await AzureAxios.post('/vigilance/create-user-vigilance-todo', {
+              userId: user.id,
+              vigilanceId: vigilanceId,
+              vigilanceTodoId: vigilanceTodoId,
+              isChecked: false,
+              completionDate: null,
+            });
+          }
+        }
+      }
+  
       setAlertLaunched(true);
-    } else {
-      alert("Veuillez sélectionner une date pour l'alerte.");
+      setIsDialogOpen(false);
+    } catch (error) {
+      console.error("Erreur lors du lancement de l'alerte:", error);
+      alert("Une erreur est survenue lors du lancement de l'alerte.");
     }
   };
 
@@ -120,7 +167,8 @@ const DashboardScreen = () => {
     setIsDateDialogOpen(true); 
 };
 
-
+console.log(alertPowers);
+console.log(selectedAlertPower);
   return (
     <div className='p-8 min-h-screen '>
       {alertLaunched && (
@@ -217,7 +265,7 @@ const DashboardScreen = () => {
                           Date de l'alerte
                         </label>
                         <DatePicker
-                          onChange={(date) => setSelectedDate(date?.toLocaleDateString() || null)}
+                          onChange={(date) => setSelectDateAlert(date?.toLocaleDateString() || null)}
                         />
                       </div>
                       <label className='block text-sm font-medium mb-2'>
