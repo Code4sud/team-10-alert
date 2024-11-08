@@ -9,7 +9,7 @@ const Navbar = () => {
     return (
         <nav
             className='bg-[#203D4E] min-h-[calc(100vh-112px)] flex flex-col items-center gap-4 min-w-48 rounded-xl pb-8 fixed'>
-            <img src='../../public/logo.png' alt='logo' className='w-full'/>
+            <img src='../../logo.png' alt='logo' className='w-full'/>
             <div className='flex flex-col items-center gap-4 h-100'>
                 <NavLink
                     to='/'
