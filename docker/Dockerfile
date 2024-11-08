@@ -10,34 +10,34 @@ COPY ./front .
 
 RUN npm run build
 
-FROM node:22-alpine
+# FROM node:22-alpine
 
-WORKDIR /app
+# WORKDIR /app
 
-COPY ./back/package.json .
+# COPY ./back2/package.json .
 
-RUN npm install
+# RUN npm install
 
-COPY ./back .
+# COPY ./back2 .
 
-
-EXPOSE 80
-
-COPY --from=builder-front /app/dist /app/public
-
-
-ENV ADDRESS=0.0.0.0 PORT=80
-
-CMD ["npm", "start"]
-
-
-# FROM nginx:1.27-alpine
-
-# WORKDIR /root/
-
-# COPY ./docker/nginx.conf /etc/nginx/nginx.conf
-# COPY --from=builder-front /app/dist /usr/share/nginx/html
 
 # EXPOSE 80
 
-# CMD ["nginx", "-g", "daemon off;"]
+# COPY --from=builder-front /app/dist /app/public
+
+
+# ENV ADDRESS=0.0.0.0 PORT=80
+
+# CMD ["npm", "start"]
+
+
+FROM nginx:1.27-alpine
+
+WORKDIR /root/
+
+COPY ./docker/nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder-front /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
