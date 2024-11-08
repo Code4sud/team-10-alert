@@ -117,14 +117,14 @@ jobs:
           mkdir -p $HOME/.kube
           echo "${{ secrets.KUBECONFIG }}" | base64 -d > $HOME/.kube/config
           chmod 600 $HOME/.kube/config
-      # - name: Deployment to kubernetes
-      #   run: |
-      #     PROJECT_NAME=${{ needs.get-repo-name.outputs.repo_name }} IMAGE="ghcr.io/code4sud/${{ needs.get-repo-name.outputs.repo_name }}:dev-${{ needs.get-repo-name.outputs.timestamp }}" envsubst < ./kube/deployment.yaml | kubectl apply -n alerte4sud -f -
+      - name: Deployment to kubernetes
+        run: |
+          PROJECT_NAME=${{ needs.get-repo-name.outputs.repo_name }}-back IMAGE="ghcr.io/code4sud/${{ needs.get-repo-name.outputs.repo_name }}-back:dev-${{ needs.get-repo-name.outputs.timestamp }}" envsubst < ./kube/deployment-back.yaml | kubectl apply -n alerte4sud -f -
 
-      # - name: Service to kubernetes
-      #   run: |
-      #     PROJECT_NAME=${{ needs.get-repo-name.outputs.repo_name }} envsubst < ./kube/service.yaml | kubectl apply -n alerte4sud -f -
+      - name: Service to kubernetes
+        run: |
+          PROJECT_NAME=${{ needs.get-repo-name.outputs.repo_name }}-back envsubst < ./kube/service-back.yaml | kubectl apply -n alerte4sud -f -
 
-      # - name: Ingress to kubernetes
-      #   run: |
-      #     PROJECT_NAME=${{ needs.get-repo-name.outputs.repo_name }} envsubst < ./kube/ingress.yaml | kubectl apply -n alerte4sud -f -
+      - name: Ingress to kubernetes
+        run: |
+          PROJECT_NAME=${{ needs.get-repo-name.outputs.repo_name }}-back envsubst < ./kube/ingress-back.yaml | kubectl apply -n alerte4sud -f -
