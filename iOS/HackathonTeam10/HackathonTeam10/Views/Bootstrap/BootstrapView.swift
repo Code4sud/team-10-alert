@@ -15,17 +15,17 @@ struct BootstrapView: View {
         Group {
             switch vm.userState.authState {
             case .authenticated:
-                TabBarView()
+                MapView()
             case .unauthenticated:
                 LoginView()
             case .splash:
                 SplashView()
             }
         }
-        .glassBackgroundEffect()
+        //.glassBackgroundEffect()
     }
 }
 
-#Preview(windowStyle: .automatic) {
+#Preview() {
     BootstrapView()
 }

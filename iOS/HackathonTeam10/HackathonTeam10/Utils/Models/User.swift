@@ -12,8 +12,8 @@ struct User: Codable {
     let firstname: String
     let lastname: String
     let gender: String
-    let health: Int
-    let score: Int
+    var health: CGFloat
+    var wisdom: CGFloat
     let avatar: String
 }
 
