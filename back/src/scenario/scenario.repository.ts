@@ -20,14 +20,14 @@ export class ScenarioRepository {
       initialScenarioNodeId: initialScenarioNode || null,
     });
   /*
-          createScenarioNode = (data: CreateScenarioNodeType) =>
-            this.scenarioNodeModel.save({
-              id: data.id,
-              imageUrl: data.imageUrl,
-              description: data.description,
-              scenarioId: data.scenarioId,
-            });
-         */
+                createScenarioNode = (data: CreateScenarioNodeType) =>
+                  this.scenarioNodeModel.save({
+                    id: data.id,
+                    imageUrl: data.imageUrl,
+                    description: data.description,
+                    scenarioId: data.scenarioId,
+                  });
+               */
   updateScenario = (scenarioId: string, data: CreateScenarioType) =>
     this.scenarioModel.update(
       { id: scenarioId },

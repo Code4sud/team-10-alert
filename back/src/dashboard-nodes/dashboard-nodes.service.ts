@@ -14,12 +14,14 @@ export class DashboardNodesService {
 
   async updateOrCreateScenario(scenarioId: string, data: UpdateScenarioDto) {
     const existingNode = await this.dashboardNodesRepository.findOneByScenarioId(scenarioId);
-
+    let dashboardNodes;
     if (existingNode) {
-      return this.dashboardNodesRepository.updateOneByScenarioId(scenarioId, data);
+      dashboardNodes = await this.dashboardNodesRepository.updateOneByScenarioId(scenarioId, data);
     } else {
-      return this.dashboardNodesRepository.createScenario(scenarioId, data);
+      dashboardNodes = await this.dashboardNodesRepository.createScenario(scenarioId, data);
     }
+    await this.fromDashboarNodesToScenarioUpdate(scenarioId, data);
+    return dashboardNodes;
   }
 
   async createScenario() {
@@ -74,12 +76,16 @@ export class DashboardNodesService {
       }
     });
     console.log('Scenario', scenario);
-    this.scenarioService.updateScenario(scenarioId, {
+    return this.scenarioService.updateScenario(scenarioId, {
       description: dataScenarioNode.description,
       imageUrl: dataScenarioNode.photo,
       initialScenarioNodeId: scenario.initialNodeId,
       name: dataScenarioNode.title,
       scenarioNodes: { nodes: scenario.nodes },
     });
+  }
+
+  getDashboardNodesByScenarioId(scenarioId: string) {
+    return this.dashboardNodesRepository.findOneByScenarioId(scenarioId);
   }
 }
