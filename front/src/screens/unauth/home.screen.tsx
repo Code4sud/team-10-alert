@@ -20,7 +20,7 @@ export const HomeScreen = () => {
         <div className="flex justify-center items-center h-screen">
             <div
                 className="flex flex-col justify-evenly gap-4 rounded-xl items-center px-8 pb-8 bg-[#203D4E] shadow-[0px_4px_15px_rgba(100,100,100,0.5)]">
-                <img src="../../../public/logo.png" alt="logo" className="h-40"/>
+                <img src="/logo.png" alt="logo" className="h-40"/>
                 <div className="flex flex-col items-start gap-2">
                     <label htmlFor="email" className="text-white text-sm">Entrez votre email</label>
                     <input name="email" type="text" placeholder="Email" value={loginData.email} onChange={handleChange}

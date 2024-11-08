@@ -31,7 +31,7 @@ const ScenariosScreen = () => {
         <div className="h-full flex gap-4 flex-wrap">
             <Card onClick={getScenarioId}
                   className='w-72 h-96 bg-[#203D4E] border-none flex flex-col gap-4 justify-center cursor-pointer items-center'>
-                <img src='../../../public/add-blue.svg' alt='logo' className='w-12 h-12'/>
+                <img src='/add-blue.svg' alt='logo' className='w-12 h-12'/>
                 <p className='text-xl font-semibold text-[#00D9FF]'>Ajouter un scénario</p>
             </Card>
             {scenarios.map((scenario) => (
