@@ -1,109 +1,141 @@
 {
-  "scenarioId": "id1",
-  "initialNode": {
-    "id": "1",
-    "description": "C'est l'etape 1 au lycée. Qu'est ce que vous faites ?",
-    "responses": [
+  "id": "83da158f-bfd8-4a14-9b3d-2188e0933a6a",
+  "name": "Alerte Inondation",
+  "description": "Lycée Masséna\nLundi 9 Septembre",
+  "imageUrl": "",
+  "scenarioNodes": {
+    "nodes": [
       {
-        "description": "Option 1 du 1er noeud ",
-        "effectDescription": " Effet de description",
-        "score": "SUPER",
-        "healthEffect": 5,
-        "wiseEffect": -10,
-        "targetQuestionId": "2"
+        "id": "a",
+        "description": "C'est le soir il fait noir dehors un lycée à Nice ALERTE INONDATION\n",
+        "responses": [
+          {
+            "description": "Pff, ils en font trop, il y a des alertes orange tous les jours, c'est n'importe quoi cette alerte",
+            "scoreDescription": "Mauvais choix...",
+            "effectDescription": "Même si on a l'impression que c'est courant, les alertes météo",
+            "healthPointsImpact": -20,
+            "wisePointsImpact": -20,
+            "scenarioNodeChildId": "43e59c27-f189-4a1c-a798-c4ef2d2254f4"
+          },
+          {
+            "description": "On vient d'entendre un alerte orange pour les inondations, effectivement il commence à pleuvoir pas mal quand on regarde",
+            "scoreDescription": "Bien joué !",
+            "effectDescription": "Prendre au sérieux l'alerte : Même si la situation peut sembler peu urgente, rester vigilant et suivre les consignes est essentiel",
+            "healthPointsImpact": 10,
+            "wisePointsImpact": 10,
+            "scenarioNodeChildId": "43e59c27-f189-4a1c-a798-c4ef2d2254f4"
+          },
+          {
+            "description": "Bof, c'est sûrement juste un exercice. Pas la peine de s'inquiéter",
+            "scoreDescription": "Mauvais choix...",
+            "effectDescription": "Même si c'est un exercice, le prendre au sérieux",
+            "healthPointsImpact": -20,
+            "wisePointsImpact": -20,
+            "scenarioNodeChildId": "43e59c27-f189-4a1c-a798-c4ef2d2254f4"
+          }
+        ],
+        "scenarioId": "83da158f-bfd8-4a14-9b3d-2188e0933a6a"
       },
       {
-        "description": "Option 2 du 1er noeud",
-        "effectDescription": " Effet de description",
-        "score": "T'ES UNE MERDE",
-        "healthEffect": 15,
-        "wiseEffect": 20,
-        "targetQuestionId": "2"
+        "id": "43e59c27-f189-4a1c-a798-c4ef2d2254f4",
+        "description": "Mes Parents!",
+        "responses": [
+          {
+            "description": "Je vais appeler mes parents en panique et leur dire de venir tout de suite, pas question que je reste ici",
+            "scoreDescription": "Mauvais choix...",
+            "effectDescription": "Ils pourraient paniquer et se mettre en danger en essayant de venir",
+            "healthPointsImpact": 0,
+            "wisePointsImpact": -10,
+            "scenarioNodeChildId": "d7444b63-0666-46a9-a00e-e26e021e8dc9"
+          },
+          {
+            "description": "Je vais envoyer un sms à mes parents , ou leur passer un petit appel pour les informer d'où je suis et de ce qu'on fait",
+            "scoreDescription": "Bien joué !",
+            "effectDescription": "Informer ses proches : Si possible, prévenir ses parents ou tuteurs pour qu'ils sachent où vous êtes et la situation dans laquelle vous vous trouvez",
+            "healthPointsImpact": 0,
+            "wisePointsImpact": 10,
+            "scenarioNodeChildId": "d7444b63-0666-46a9-a00e-e26e021e8dc9"
+          },
+          {
+            "description": "Ils doivent être occupés, je ne vais pas les déranger avec ça",
+            "scoreDescription": "Pas si mal",
+            "effectDescription": "Ils pourraient s'inquiéter et prendre de mauvaises décisions en conséquence",
+            "healthPointsImpact": 10,
+            "wisePointsImpact": -10,
+            "scenarioNodeChildId": "d7444b63-0666-46a9-a00e-e26e021e8dc9"
+          }
+        ],
+        "scenarioId": "83da158f-bfd8-4a14-9b3d-2188e0933a6a"
       },
       {
-        "description": "Option 3 du 1er noeud ",
-        "effectDescription": " Effet de description",
-        "score": "SUPER",
-        "healthEffect": 35,
-        "wiseEffect": -25,
-        "targetQuestionId": "2"
+        "id": "d7444b63-0666-46a9-a00e-e26e021e8dc9",
+        "description": "Il faut que je m'informe",
+        "responses": [
+          {
+            "description": "Et si je regardais une vidéo sur YouTube en attendant que ça se passe ? Il faut que je pense à autre chose",
+            "scoreDescription": "Mauvais choix...",
+            "effectDescription": "Il vaut mieux écouter les consignes, au risque de se mettre en danger",
+            "healthPointsImpact": -30,
+            "wisePointsImpact": -20,
+            "scenarioNodeChildId": "06ee423e-111a-4825-8e47-1d4f16fbae46"
+          },
+          {
+            "description": "Je vais aller voir sur X et Instagram ce qu'ils disent, aller voir les stories pour savoir ce qu'il se passe",
+            "scoreDescription": "Mauvais choix...",
+            "effectDescription": "Sur les réseaux sociaux, il y a tout type d'infos, et c'est difficile de séparer le bon du mauvais",
+            "healthPointsImpact": -10,
+            "wisePointsImpact": -10,
+            "scenarioNodeChildId": "06ee423e-111a-4825-8e47-1d4f16fbae46"
+          },
+          {
+            "description": "Je vais me renseigner sur les sites officiels, écouter la radio ou mettre les informations à la télévision",
+            "scoreDescription": "Bien joué !",
+            "effectDescription": "Important d'avoir des informations fiables",
+            "healthPointsImpact": 20,
+            "wisePointsImpact": 10,
+            "scenarioNodeChildId": "06ee423e-111a-4825-8e47-1d4f16fbae46"
+          }
+        ],
+        "scenarioId": "83da158f-bfd8-4a14-9b3d-2188e0933a6a"
+      },
+      {
+        "id": "06ee423e-111a-4825-8e47-1d4f16fbae46",
+        "description": "Le prof nous demande de rester ensemble en attendant les secours ou d'avoir d'autres informations",
+        "responses": [
+          {
+            "description": "Je vais sortir discrètement et aller voir ce qui se passe par moi-même",
+            "scoreDescription": "Mauvais choix...",
+            "effectDescription": "Prendre le risque de sortir sans consignes",
+            "healthPointsImpact": -15,
+            "wisePointsImpact": -10,
+            "scenarioNodeChildId": "ae544be5-99b5-4cfa-9884-dcc6c610703a"
+          },
+          {
+            "description": "Je vais attendre ici calmement avec les autres",
+            "scoreDescription": "Bien joué !",
+            "effectDescription": "Se conformer aux consignes de sécurité",
+            "healthPointsImpact": 10,
+            "wisePointsImpact": 15,
+            "scenarioNodeChildId": "ae544be5-99b5-4cfa-9884-dcc6c610703a"
+          },
+          {
+            "description": "Je vais me rapprocher du professeur pour en savoir plus",
+            "scoreDescription": "Pas si mal",
+            "effectDescription": "Chercher plus d'informations auprès d'une personne fiable",
+            "healthPointsImpact": 0,
+            "wisePointsImpact": 5,
+            "scenarioNodeChildId": "ae544be5-99b5-4cfa-9884-dcc6c610703a"
+          }
+        ],
+        "scenarioId": "83da158f-bfd8-4a14-9b3d-2188e0933a6a"
+      },
+      {
+        "id": "ae544be5-99b5-4cfa-9884-dcc6c610703a",
+        "description": "C'est la fin !",
+        "responses": [],
+        "scenarioId": "83da158f-bfd8-4a14-9b3d-2188e0933a6a"
       }
     ]
   },
-  "nodes": [
-    {
-      "id": "2",
-      "description": "C'est l'etape 2 dans la rue",
-      "responses": [
-        {
-          "description": "Option 1 du 2eme noeud  ",
-          "effectDescription": " Effet de description",
-          "score": "SUPER",
-          "healthEffect": -35,
-          "wiseEffect": 25,
-          "targetQuestionId": "3"
-        },
-        {
-          "description": "Option 2 du 2eme noeud ",
-          "effectDescription": " Effet de description",
-          "score": "T'ES UNE MERDE",
-          "healthEffect": -20,
-          "wiseEffect": -15,
-          "targetQuestionId": "2"
-        },
-        {
-          "description": "Option 3 du 2eme noeud ",
-          "effectDescription": " Effet de description",
-          "score": "T'ES UNE MERDE",
-          "healthEffect": -40,
-          "wiseEffect": -50,
-          "targetQuestionId": "2"
-        }
-      ]
-    },
-    {
-      "id": "3",
-      "description": "C'est l'etape 3 dans le tram",
-      "responses": [
-        {
-          "description": "Option 1 du 3eme noeud ",
-          "effectDescription": " Effet de description",
-          "score": "SUPER",
-          "healthEffect": 50,
-          "wiseEffect": -5,
-          "parentQuestionId": "1",
-          "targetQuestionId": "2"
-        },
-        {
-          "description": "Option 2 du 3eme noeud ",
-          "effectDescription": " Effet de description",
-          "score": "T'ES UNE MERDE",
-          "healthEffect": -40,
-          "wiseEffect": 40,
-          "parentQuestionId": "1",
-          "targetQuestionId": "2"
-        },
-        {
-          "description": "Option 3 du 3eme noeud ",
-          "effectDescription": " Effet de description",
-          "score": "SUPER",
-          "healthEffect": -30,
-          "wiseEffect": 30,
-          "parentQuestionId": "1",
-          "targetQuestionId": "2"
-        }
-      ]
-    }
-  ]
+  "initialScenarioNodeId": "a"
 }
-
-
-
-
-
-
-
-
-
-
-

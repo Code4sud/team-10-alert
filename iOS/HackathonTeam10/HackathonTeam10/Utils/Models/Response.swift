@@ -8,12 +8,12 @@
 import Foundation
 
 
-struct Response: Codable {
+struct Response: Decodable {
     let description: String
-    let effectDescription: String
-    let score: String
-    let healthEffect: Int
-    let wiseEffect: Int
-    let targetQuestionId: String
-    let parentQuestionId: String?
+    let scoreDescription: String?
+    let effectDescription: String?
+    let healthPointsImpact: Int?
+    let wisePointsImpact: Int?
+    let scenarioNodeChildId: String?
 }
+

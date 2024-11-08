@@ -1,6 +1,4 @@
 import {useEffect, useState} from "react";
-import logo from '../../public/logo-alert4sud.svg';
-import burgerIcon from "../../public/burger-icon.svg";
 import {X} from "lucide-react";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
@@ -17,6 +15,8 @@ export default function Header() {
     const toggleDrawer = () => setIsOpen((prevState) => !prevState);
 
     const isEventFinished = true;
+    const logo = "/logo-alert4sud.svg"
+    const burgerIcon = "/burger-icon.svg"
 
     // Définit les éléments de menu
     const menuItems: MenuItem[] = [

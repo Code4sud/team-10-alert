@@ -21,15 +21,18 @@ struct ChooseCharacterView: View {
             BackgroundView()
             
             VStack{
+                /*
                 RoundedRectangle(cornerRadius: 12)
                     .fill(Color.primary)
                     .frame(width: 300, height: 600)
                     .shadow( color: Color(.secondary), radius: 12)
                     .overlay(
+                        */
+                        
                         VStack {
                             Text("Choisissez votre personnage")
                                 .foregroundStyle(Color(.white))
-                                .padding(.top, 10)
+                                .padding(.top, 30)
                             
                             TabView(selection: $selectedIndex) {
                                 ForEach(urlList, id: \.self) { url in
@@ -39,16 +42,31 @@ struct ChooseCharacterView: View {
                             }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 530)
+                                .padding(.bottom, 20)
 
                             
-                        }.frame(maxWidth: 300, maxHeight: 600)
+                        }.background(
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color("video_bg"))
+                                .shadow( color: Color(.secondary), radius: 12)
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.white, lineWidth: 1)
+                        ).padding(.horizontal, 60)
+
+
+                    
+
+                        
+                        /*.frame(maxWidth: 300, maxHeight: 600)
                             .background(Color("video_bg"))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
                                     .stroke(Color.white, lineWidth: 1)
                                 
                             )
-                    )
+                    )*/
                 Spacer()
                     .frame(height: 32)
                 HStack {
@@ -75,7 +93,7 @@ struct ChooseCharacterView: View {
 
 
 #Preview {
-    // ChooseCharacterView()
+    ChooseCharacterView(viewModel: LoginViewModel())
 }
 
 

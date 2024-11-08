@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9B490A9A2CDD7D3A00A4C68D /* NavigationTransitions in Frameworks */ = {isa = PBXBuildFile; productRef = 9B490A992CDD7D3A00A4C68D /* NavigationTransitions */; };
+		9B490BD72CDE04F400A4C68D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9B490BD62CDE04F400A4C68D /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B490A9A2CDD7D3A00A4C68D /* NavigationTransitions in Frameworks */,
+				9B490BD72CDE04F400A4C68D /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +120,7 @@
 			name = HackathonTeam10;
 			packageProductDependencies = (
 				9B490A992CDD7D3A00A4C68D /* NavigationTransitions */,
+				9B490BD62CDE04F400A4C68D /* Alamofire */,
 			);
 			productName = HackathonTeam10;
 			productReference = F114B3482CDCAAA300046ED6 /* HackathonTeam10.app */;
@@ -205,6 +208,7 @@
 				F114B3D12CDD005C00046ED6 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				F114B3D22CDD01BD00046ED6 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				9B490A982CDD7D3A00A4C68D /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */,
+				9B490BD52CDE04F400A4C68D /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F114B3492CDCAAA300046ED6 /* Products */;
@@ -581,6 +585,14 @@
 				minimumVersion = 0.14.0;
 			};
 		};
+		9B490BD52CDE04F400A4C68D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.1;
+			};
+		};
 		F114B3D12CDD005C00046ED6 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
@@ -604,6 +616,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9B490A982CDD7D3A00A4C68D /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */;
 			productName = NavigationTransitions;
+		};
+		9B490BD62CDE04F400A4C68D /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B490BD52CDE04F400A4C68D /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
