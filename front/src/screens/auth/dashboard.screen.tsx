@@ -167,7 +167,7 @@ console.log(tasks);
 console.log(alertPowers);
 console.log(selectedAlertPower);
   return (
-    <div className='p-8 min-h-screen flex-grow'>
+    <div className='p-8 min-h-screen flex-grow bg-[#203D4E] rounded-xl'>
       {alertLaunched && (
         <p className='bg-black border border-red-600 border-1 text-red-600 px-4 py-2 rounded-md mb-6'>
           Une alerte a été lancée et sera active jusqu'au{' '}
@@ -179,7 +179,7 @@ console.log(selectedAlertPower);
         <Button
           onClick={() => setCurrentDashboard('history')}
           className={`${
-            currentDashboard === 'history' ? 'bg-blue-500' : 'bg-blue-400'
+            currentDashboard === 'history' ? 'bg-blue-400' : 'bg-white border-2 border-blue-400'
           } text-black hover:bg-blue-300`}
         >
           Historique des alertes
@@ -187,7 +187,7 @@ console.log(selectedAlertPower);
         <Button
           onClick={() => openDashboardModal('before')}
           className={`${
-            currentDashboard === 'before' ? 'bg-yellow-500' : 'bg-yellow-400'
+            currentDashboard === 'before' ? 'bg-yellow-400' : 'bg-white border-2 border-yellow-400'
           } text-black hover:bg-yellow-300`}
         >
           Avant l'alerte
@@ -195,7 +195,7 @@ console.log(selectedAlertPower);
         <Button
           onClick={() => openDashboardModal('during')}
           className={`${
-            currentDashboard === 'during' ? 'bg-orange-500' : 'bg-orange-400'
+            currentDashboard === 'during' ? 'bg-orange-400' : 'bg-white border-2 border-orange-400'
           } text-black hover:bg-orange-300`}
         >
           Pendant l'alerte
@@ -203,7 +203,7 @@ console.log(selectedAlertPower);
         <Button
           onClick={() => openDashboardModal('after')}
           className={`${
-            currentDashboard === 'after' ? 'bg-green-500' : 'bg-green-400'
+            currentDashboard === 'after' ? 'bg-green-400' : 'bg-white border-2 border-green-400'
           } text-black hover:bg-green-300`}
         >
           Après l'alerte

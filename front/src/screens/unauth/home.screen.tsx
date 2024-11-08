@@ -18,7 +18,7 @@ export const HomeScreen = () => {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="flex flex-col justify-evenly gap-4 items-center px-8 pb-8 bg-black rounded-md shadow-[0px_4px_15px_rgba(100,100,100,0.5)]">
+      <div className="flex flex-col justify-evenly gap-4 rounded-xl items-center px-8 pb-8 bg-[#203D4E] shadow-[0px_4px_15px_rgba(100,100,100,0.5)]">
         <img src="src/assets/logo.png" alt="logo" className="h-40" />
         <div className="flex flex-col items-start gap-2">
           <label htmlFor="email" className="text-white text-sm">Entrez votre email</label>

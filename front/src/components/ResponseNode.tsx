@@ -10,6 +10,8 @@ type ResponseProps = {
     description: string
     effect: string,
     score: string
+    healthPointsImpact: number,
+    wisePointsImpact: number,
 }
 
 export function ResponseNode({data, id, isConnectable}: { data: ResponseProps, id: any, isConnectable: any }) {
@@ -21,23 +23,43 @@ export function ResponseNode({data, id, isConnectable}: { data: ResponseProps, i
                 position={Position.Top}
                 isConnectable={isConnectable}
             />
-            <Card className="bg-slate-800 text-white border-none">
+            <Card className="bg-[#007186] text-white border-none">
                 <CardHeader>
                     <CardTitle>Choix 1</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <Input
-                        className="bg-slate-900 border-none nodrag"
+                        className="bg-[#203D4E] border-none nodrag"
                         placeholder="Saisissez votre texte"
                         onChange={(evt) => updateNodeData(id, {description: evt.target.value})}
                         value={data.description}
                     />
                     <Input
-                        className="bg-slate-900 border-none nodrag"
+                        className="bg-[#203D4E] border-none nodrag"
                         placeholder="À propos de ce choix"
                         onChange={(evt) => updateNodeData(id, {effect: evt.target.value})}
                         value={data.effect}
                     />
+                    <div className="flex items-center space-x-2">
+                        <div className="flex flex-col space-y-2">
+                            <Label>Points de survie</Label>
+                            <Input
+                                className="bg-[#203D4E] border-none nodrag"
+                                placeholder="Score"
+                                onChange={(evt) => updateNodeData(id, {healthPointsImpact: evt.target.value})}
+                                value={data.healthPointsImpact}
+                            />
+                        </div>
+                        <div className="flex flex-col space-y-2">
+                            <Label>Points de sagesse</Label>
+                            <Input
+                                className="bg-[#203D4E] border-none nodrag"
+                                placeholder="Score"
+                                onChange={(evt) => updateNodeData(id, {wisePointsImpact: evt.target.value})}
+                                value={data.wisePointsImpact}
+                            />
+                        </div>
+                    </div>
                     <div className="space-y-2">
                         <Label>Note</Label>
                         <RadioGroup defaultValue="super"

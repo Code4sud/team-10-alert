@@ -13,7 +13,9 @@ const MainLayout = () => (
     <Header />
     <div className='flex h-full p-4 w-full gap-4 mt-20'>
       <Navbar />
+      <div className='ml-52'>
       <Outlet />
+      </div>
     </div>
   </>
 );
@@ -28,16 +30,12 @@ const authRouter = createBrowserRouter([
     children: [
       { index: true, element: <DashboardScreen /> },
       {
-        path: '/chart',
-        element: <ChartScreen />,
-      },
-      {
         path: '/scenarios',
         element: <ScenariosScreen />,
       },
       {
-        path: '/scenarios/:id',
-        element: <ManageScenarioScreen />,
+        path: '/scenarios/:id/:isCreate',
+        element: <ChartScreen />,
       },
     ],
   },
