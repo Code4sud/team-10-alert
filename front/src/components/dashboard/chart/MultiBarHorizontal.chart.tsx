@@ -107,7 +107,7 @@ export function MultiBarHorizontal() {
       </CardContent>
       <CardFooter className='flex-col items-start gap-2 text-sm'>
         <div className='flex gap-2 font-medium leading-none'>
-          En hausse de +16.7% cette année <TrendingDown className='h-4 w-4' />
+          En hausse de 16.7% cette année <TrendingDown className='h-4 w-4' />
         </div>
       </CardFooter>
     </Card>

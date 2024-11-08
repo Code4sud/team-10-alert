@@ -17,9 +17,9 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 const chartData = [
-    { month: "Le jour même", desktop: 186 },
-    { month: "1 à 3 jours", desktop: 305 },
-    { month: "3 à 7 jours", desktop: 237 },
+    { month: "Le jour de l'alerte", desktop: 186 },
+    { month: "1 à 3 jours après", desktop: 305 },
+    { month: "3 à 7 jours après", desktop: 237 },
     { month: "72h avant", desktop: 73 },
     { month: "48h avant", desktop: 209 },
     { month: "24h avant", desktop: 214 },
