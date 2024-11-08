@@ -19,6 +19,9 @@ spec:
           image: $IMAGE
           ports:
             - containerPort: 80
+          env:
+            - name: DATABASE_URL
+              value: "file:./dev.db"
       #     volumeMounts:
       #       - mountPath: /root/pb_data
       #         name: data-storage
