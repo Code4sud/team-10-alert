@@ -125,6 +125,10 @@ jobs:
         run: |
           PROJECT_NAME=${{ needs.get-repo-name.outputs.repo_name }}-back envsubst < ./kube/service-back.yaml | kubectl apply -n alerte4sud -f -
 
+      - name: PVC to kubernetes
+        run: |
+          PROJECT_NAME=${{ needs.get-repo-name.outputs.repo_name }}-back envsubst < ./kube/pvc-back.yaml | kubectl apply -n alerte4sud -f -
+
       - name: Ingress to kubernetes
         run: |
           PROJECT_NAME=${{ needs.get-repo-name.outputs.repo_name }}-back envsubst < ./kube/ingress-back.yaml | kubectl apply -n alerte4sud -f -

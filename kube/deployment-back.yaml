@@ -22,13 +22,13 @@ spec:
           env:
             - name: DATABASE_URL
               value: "file:./dev.db"
-      #     volumeMounts:
-      #       - mountPath: /root/pb_data
-      #         name: data-storage
-      # volumes:
-      #   - name: data-storage
-      #     persistentVolumeClaim:
-      #       claimName: $PROJECT_NAME-pvc
+          volumeMounts:
+            - mountPath: /home/node/database
+              name: data-storage
+      volumes:
+        - name: data-storage
+          persistentVolumeClaim:
+            claimName: $PROJECT_NAME-back-pvc
       restartPolicy: Always
       imagePullSecrets:
         - name: dockerconfigjson-github-com
