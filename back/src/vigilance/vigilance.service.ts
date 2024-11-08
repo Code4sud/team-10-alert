@@ -26,7 +26,8 @@ export class VigilanceService {
   ) {}
 
   // Vigilance CRUD
-  createVigilance(createVigilanceDto: CreateVigilanceDto): Promise<Vigilance> {
+  createVigilance(createVigilanceDto: CreateVigilanceDto) {
+    console.log(createVigilanceDto);
     const vigilance = this.vigilanceRepository.create(createVigilanceDto);
     return this.vigilanceRepository.save(vigilance);
   }

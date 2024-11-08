@@ -78,10 +78,11 @@ const Chart = () => {
     const reactFlowInstance = useReactFlow();
 
     const handleSaveScenario = async (value: any) => {
-        return scenarioRequests.createOrUpdateScenario({
-            nodes: reactFlowInstance.getNodes(),
-            edges: reactFlowInstance.getEdges()
-        })
+        return scenarioRequests.createOrUpdateScenario('50bd4909-2cee-4a05-83f0-e3aa0fa3c32e',
+            {
+                nodes: reactFlowInstance.getNodes(),
+                edges: reactFlowInstance.getEdges()
+            })
     }
     const debouncedSave = useDebounce(handleSaveScenario, 1000);
 

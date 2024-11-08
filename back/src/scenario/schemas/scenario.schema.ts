@@ -1,29 +1,21 @@
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { ScenarioNode } from './scenario-nodes.schema';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Scenario {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ nullable: true })
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
 
   @Column({ nullable: true })
   imageUrl: string;
 
-  @Column()
-  difficulty: number;
-
-  @OneToMany(() => ScenarioNode, (node) => node.scenario)
-  scenarioNodes: ScenarioNode[];
-
-  @OneToOne(() => ScenarioNode, (node) => node.initialForScenario)
-  @JoinColumn({ name: 'initialScenarioNodeId' })
-  initialScenarioNode: ScenarioNode;
+  @Column('json', { nullable: true })
+  scenarioNodes: Record<string, any>;
 
   @Column({ nullable: true })
   initialScenarioNodeId: string;
