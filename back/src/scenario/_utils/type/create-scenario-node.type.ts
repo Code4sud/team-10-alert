@@ -1,9 +1,9 @@
-import { CreateResponseDto } from '../dtos/request/create-scenario-response.dto';
+import { CreateResponseNodeType } from './create-scenario-response.type';
 
 export class CreateScenarioNodeType {
+  id: string;
   imageUrl: string;
   description: string;
-  responses: CreateResponseDto[];
-  responseParentId: string;
+  responses: CreateResponseNodeType[];
   scenarioId: string;
 }

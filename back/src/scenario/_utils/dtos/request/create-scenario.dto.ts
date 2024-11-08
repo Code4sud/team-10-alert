@@ -1,5 +1,4 @@
 import { IsArray, IsNumber, IsString } from 'class-validator';
-import { ScenarioNode } from '../../../schemas/scenario-nodes.schema';
 
 export class CreateScenarioDto {
   @IsString()
@@ -15,7 +14,7 @@ export class CreateScenarioDto {
   difficulty: number;
 
   @IsArray()
-  scenarioNodes: ScenarioNode[];
+  scenarioNodes: any;
 
   @IsString()
   initialScenarioNodeId: string;

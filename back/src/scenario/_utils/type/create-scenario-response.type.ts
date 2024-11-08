@@ -4,6 +4,5 @@ export class CreateResponseNodeType {
   effectDescription: string;
   healthPointsImpact: number;
   wisePointsImpact: number;
-  scenarioNodeParentId: string;
   scenarioNodeChildId: string;
 }

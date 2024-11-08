@@ -3,4 +3,5 @@ export type CreateScenarioType = {
   description: string;
   imageUrl: string;
   initialScenarioNodeId: string;
+  scenarioNodes: Record<string, any>;
 };

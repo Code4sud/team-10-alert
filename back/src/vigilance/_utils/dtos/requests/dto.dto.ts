@@ -1,6 +1,13 @@
+import { IsDate, IsString } from 'class-validator';
+
 export class CreateVigilanceDto {
+  @IsString()
   alertType: string;
+
+  @IsString()
   vigilanceType: string;
+
+  @IsDate()
   alertStartDate: Date;
 }
 

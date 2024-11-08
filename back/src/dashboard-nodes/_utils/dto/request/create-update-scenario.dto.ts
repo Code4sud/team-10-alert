@@ -69,6 +69,9 @@ export class DataScenarioNode {
 export class DataQuestionNode {
   @IsString()
   description: string;
+
+  @IsString()
+  photoUrl: string;
 }
 
 export class DataResponseNode {
@@ -80,4 +83,10 @@ export class DataResponseNode {
 
   @IsString()
   score: string;
+
+  @IsNumber()
+  healthPointsImpact: number;
+
+  @IsNumber()
+  wisePointsImpact: number;
 }
